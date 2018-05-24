@@ -1,0 +1,34 @@
+= ETF Steering Committee - 1st meeting
+
+25/5 10:00-11:30
+
+== Agenda
+* Approval of the agenda
+* Nomination of main and alternate representatives of SG members (for information)
+** JRC: Michael Lutz, Roberto Sgnaolin
+** ii: …
+* Terms of Reference for SG and TC (for endorsement)
+** add a note on allowing observers in both groups?
+* Practical arrangements – how? who? timing?
+** Product Roadmap
+** Project Policies and Practices
+*** SG ToR
+*** TC ToR
+*** Code of Conduct
+** Communication
+*** ETF main webpage
+*** Helpdesk 
+*** Mailing list
+** Infrastructure Management
+*** Repository ownership & management
+***	Communication infrastructure management
+** Intellectual Property Management
+*** License Policy
+*** Contributor License Agreement
+** Improvement Proposals Rules
+** SC meetings
+*** Frequency
+*** Regular time slot
+* Next steps
+* AOB
+** Adding the ARE3NA Design report to ETF documentation?
