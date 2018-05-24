@@ -21,11 +21,11 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Developing Executable Test Suites
-:doc-status: in review
+:doc-status: approved
 :doc-date: 2017-06-21
 :doc-description: This document is a guide on how to develop Executable Test Suites for ETF using the test engines SoapUI, BaseX and the TEAM Engine.
 :doc-audience: Everyone planning to develop or edit Executable Test Suites
-:doc-id: http://docs.etf-validator.net/Developer_manuals/Developing_Executable_Test_Suites.html
+:doc-id: https://docs.etf-validator.net/v2.0/Developer_manuals/Developing_Executable_Test_Suites.html
 :doc-lang: EN
 
 include::../General/Document-metadata.adoc[]
@@ -66,3 +66,7 @@ include::TEAM_Engine_ETS.adoc[]
 :numbered!:
 
 include::../General/Glossary.adoc[]
+
+***
+
+include::../General/Legal_Privacy.adoc[]

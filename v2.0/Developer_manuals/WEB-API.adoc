@@ -21,11 +21,11 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Web API v2
-:doc-status: in review
+:doc-status: approved
 :doc-date: 2017-06-21
 :doc-description: Quickstart manual for the 2nd version of the ETF Web API. For the complete documentation of the API, consult the Swagger documentation.
 :doc-audience: Developers planning to use the ETF Web API v2 to automate test runs with an ETF instance, for example in an automated test pipeline.
-:doc-id: http://docs.etf-validator.net/Developer_manuals/WEB-API.html
+:doc-id: https://docs.etf-validator.net/v2.0/Developer_manuals/WEB-API.html
 :doc-lang: EN
 
 include::../General/Document-metadata.adoc[]
@@ -199,3 +199,7 @@ As the val property equals the max property, the test run already finished and t
 ----
 http://localhost:8080/v2/TestRuns/EID1dfbed0e-131e-489d-a0a4-712f4259c30a.html
 ----
+
+***
+
+include::../General/Legal_Privacy.adoc[]

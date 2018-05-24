@@ -6,7 +6,6 @@ asciidoctor \
 index.adoc \
 User_manuals/Simplified_workflows.adoc \
 Admin_manuals/index.adoc \
-Admin_manuals/etfee/index.adoc \
 Developer_manuals/WEB-API.adoc \
 Developer_manuals/Building.adoc \
 Developer_manuals/Developing_Executable_Test_Suites.adoc

@@ -21,11 +21,11 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Administration of an ETF validator
-:doc-status: in review
+:doc-status: approved
 :doc-date: 2017-09-28
 :doc-description: This document describes how to install and configure an ETF validator.
 :doc-audience: Administrators who want to set up a deployment of the ETF validator. Knowledge about Apache Tomcat 8 are required.
-:doc-id: http://docs.etf-validator.net/Admin_manuals/index.html
+:doc-id: https://docs.etf-validator.net/v2.0/Admin_manuals/index.html
 :doc-lang: EN
 
 include::../General/Document-metadata.adoc[]
@@ -62,3 +62,7 @@ include::ets-installation.adoc[]
 include::faq.adoc[]
 
 :numbered!:
+
+***
+
+include::../General/Legal_Privacy.adoc[]

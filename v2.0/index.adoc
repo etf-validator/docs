@@ -46,3 +46,5 @@ include::General/about.adoc[]
 * ETF system structure and concepts (to be published)
 
 include::General/Copyright.adoc[]
+
+include::General/Legal_Privacy.adoc[]

@@ -21,11 +21,11 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Building ETF
-:doc-status: in review
+:doc-status: approved
 :doc-date: 2017-06-21
 :doc-description: This manual describes how to build the ETF validator. Knowledge about maven, maven repositories and build management tools are required.
 :doc-audience: Developers planning to build the ETF validator themselves
-:doc-id: http://docs.etf-validator.net/Developer_manuals/Building.html
+:doc-id: https://docs.etf-validator.net/v2.0/Developer_manuals/Building.html
 :doc-lang: EN
 
 include::../General/Document-metadata.adoc[]
@@ -177,3 +177,7 @@ Build-User: herrmann
 Build-JDK: 1.8.0_102
 ----
 You can fix the problem by cloning the repository from GitHub using GIT.
+
+***
+
+include::../General/Legal_Privacy.adoc[]
