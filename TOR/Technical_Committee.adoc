@@ -1,10 +1,10 @@
 [[technical-committee-tor]]
-= Technical Committee ToR
+= Technical Committee Terms of Reference
 
-NOTE: This is a DRAFT version
+Version 1.0.0, 30/5/2018
 
 [[objectives]]
-= *Objectives*
+== *Objectives*
 
 The main attributions of the Technical Committee (TC) are oriented to
 guarantee the sustainability of the product from the technical point of
@@ -119,7 +119,7 @@ recommended to allow the TC to carry out these and other tasks as
 efficiently as possible.
 
 [[tc-membership]]
-= TC Membership
+== TC Membership
 
 The process of obtaining TC membership is based on proven technical
 capacity.
@@ -143,7 +143,7 @@ Inaugural members are:
 * …
 
 [[assets-to-be-maintained]]
-= Assets to be maintained
+== Assets to be maintained
 
 The assets that the committee has to produce and maintain in order to
 establish the main lines of the ETF development for the Community are

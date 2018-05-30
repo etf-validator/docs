@@ -1,10 +1,10 @@
 [[steering-group-tor]]
-= Steering Group ToR
+= ETF Steering Group - Terms of Reference
 
-NOTE: This is a DRAFT version
+Version 1.0.0, 30/5/2018
 
 [[objectives]]
-= *Objectives*
+== *Objectives*
 
 The main purpose of the Steering Group (SG) is to manage the governance
 of the ETF Validator in order to ensure its use and sustainability by
@@ -143,7 +143,7 @@ emailed to the SG for its incorporation to the authorization process of
 the contributor.
 
 [[sg-membership]]
-= SG Membership
+== SG Membership
 
 The SG is made up of individuals who are intended to represent the
 various communities which have a stake in the use of ETF Validator as a
@@ -158,8 +158,10 @@ The inaugural members are:
 * JRC
 * Interactive instruments
 
+SG members may invite observers to SG meetings.
+
 [[new-sg-members]]
-== New SG Members
+=== New SG Members
 
 The list of SG members is open and it is intended to be as extensive as
 possible to represent at this level as much as possible the Community
@@ -199,7 +201,7 @@ If no consensus can be reached, exceptionally a simple majority vote
 shall be used.
 
 [[improvement-proposals]]
-= Improvement Proposals
+== Improvement Proposals
 
 The following mechanism is used to propose and agree on improvement
 proposals:
@@ -215,7 +217,7 @@ roadmap, taking into account also the comments and level of support
 expressed by the community.
 
 [[assets-to-be-maintained]]
-= *Assets to be maintained*
+== Assets to be maintained
 
 The assets that the group has to produce and maintain in order to
 establish the main lines of the ETF development for the Community are
