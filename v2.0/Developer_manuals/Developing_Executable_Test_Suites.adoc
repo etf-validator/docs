@@ -41,6 +41,7 @@ include::../General/Document-metadata.adoc[]
 | 2017-09-13 | Jon Herrmann | Schematron section added
 | 2017-11-25 | Jon Herrmann | Spatial indexing section updated
 | 2017-12-06 | Jon Herrmann | Message template bundles section updated
+| 2018-07-10 | Jon Herrmann | Links updated
 |===
 
 
