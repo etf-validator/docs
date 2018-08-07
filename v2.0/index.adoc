@@ -43,7 +43,7 @@ include::General/about.adoc[]
 * link:Developer_manuals/WEB-API.html[Workflow automation using the Web API]
 * link:Developer_manuals/Developing_Executable_Test_Suites.html[Developing Executable Test Suites]
 * link:Developer_manuals/Building.html[Building ETF]
-* ETF system structure and concepts (to be published)
+* link:https://joinup.ec.europa.eu/document/inspire-test-framework-design-report[ETF system structure and concepts (initial design, does not reflect the current developments)]
 
 include::General/Copyright.adoc[]
 
