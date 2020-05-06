@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>Developing Executable Test Suites</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="../stylesheets/pygments-autumn.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
 </head>
 <body class="book toc2 toc-left">
@@ -39,15 +38,16 @@
 <li><a href="#typical-setup">3.4. Typical setup</a></li>
 <li><a href="#xml-document-of-an-executable-test-suite">3.5. XML document of an Executable Test Suite</a></li>
 <li><a href="#the-xquery-document">3.6. The XQuery document</a></li>
-<li><a href="#spatial-tests">3.7. Testing spatial aspects</a></li>
-<li><a href="#parameters">3.8. Parameters</a></li>
-<li><a href="#basex-test-object-types">3.9. Test Object Types</a></li>
-<li><a href="#basex-test-item-types">3.10. Test Item Types</a></li>
-<li><a href="#_dependencies">3.11. Dependencies</a></li>
-<li><a href="#_tags">3.12. Tags</a></li>
-<li><a href="#_statistical_information">3.13. Statistical information</a></li>
-<li><a href="#basex-attachments">3.14. Attachments</a></li>
-<li><a href="#_schematron">3.15. Schematron</a></li>
+<li><a href="#the-prepare-chunk-document">3.7. The prepare-chunk document</a></li>
+<li><a href="#spatial-tests">3.8. Testing spatial aspects</a></li>
+<li><a href="#parameters">3.9. Parameters</a></li>
+<li><a href="#basex-test-object-types">3.10. Test Object Types</a></li>
+<li><a href="#basex-test-item-types">3.11. Test Item Types</a></li>
+<li><a href="#_dependencies">3.12. Dependencies</a></li>
+<li><a href="#_tags">3.13. Tags</a></li>
+<li><a href="#_statistical_information">3.14. Statistical information</a></li>
+<li><a href="#basex-attachments">3.15. Attachments</a></li>
+<li><a href="#_schematron">3.16. Schematron</a></li>
 </ul>
 </li>
 <li><a href="#_soapui_based_test_suites">4. SoapUI based Test Suites</a>
@@ -82,7 +82,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-none grid-none spread">
+<table class="tableblock frame-none grid-none stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -100,7 +100,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_developing_executable_test_suites" class="sect0">Developing Executable Test Suites</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none spread">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -141,7 +141,7 @@ Testing framework for spatial data and services</span></p></td>
 <div class="sect1">
 <h2 id="_changelog">Changelog</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -194,6 +194,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2018-07-10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Links updated</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-05-06</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Christoph Spalek</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add prepare-chunk section</p></td>
 </tr>
 </tbody>
 </table>
@@ -266,7 +271,7 @@ Testing framework for spatial data and services</span></p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The BaseX extension module <a href="https://github.com/interactive-instruments/etf-gmlgeox">GmlGeoX</a> extends XQuery to enable testing spatial aspects of GML features (geometry validation, spatial indexing, spatial predicates).</p>
+<p>The BaseX extension module <a href="https://github.com/etf-validator/etf-gmlgeox">GmlGeoX</a> extends XQuery to enable testing spatial aspects of GML features (geometry validation, spatial indexing, spatial predicates).</p>
 </div>
 <div class="paragraph">
 <p>Due to the different characteristics of the test engines, the development of an Executable Test Suite is very different for each test engine.</p>
@@ -393,15 +398,15 @@ The <code>name</code> attribute values of an <code>etf:LangTranslationTemplateCo
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;TranslationTemplateBundle xmlns="http://www.interactive-instruments.de/etf/2.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"
-   id="EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;TranslationTemplateBundle xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd&quot;
+   id=&quot;EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8&quot;&gt;
     &lt;translationTemplateCollections&gt;
-      &lt;LangTranslationTemplateCollection name="TR.invalidSchema"&gt;
+      &lt;LangTranslationTemplateCollection name=&quot;TR.invalidSchema&quot;&gt;
          &lt;translationTemplates&gt;
-            &lt;TranslationTemplate language="en" name="TR.invalidSchema"&gt;XML document '{filename}': The file has {count} schema validation error(s).&lt;/TranslationTemplate&gt;
-            &lt;TranslationTemplate language="de" name="TR.invalidSchema"&gt;XML Dokument '{filename}': Die Datei hat {count} Schema Validierungsfehler.&lt;/TranslationTemplate&gt;
+            &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.invalidSchema&quot;&gt;XML document &#39;{filename}&#39;: The file has {count} schema validation error(s).&lt;/TranslationTemplate&gt;
+            &lt;TranslationTemplate language=&quot;de&quot; name=&quot;TR.invalidSchema&quot;&gt;XML Dokument &#39;{filename}&#39;: Die Datei hat {count} Schema Validierungsfehler.&lt;/TranslationTemplate&gt;
          &lt;/translationTemplates&gt;
       &lt;/LangTranslationTemplateCollection&gt;
     &lt;/translationTemplateCollections&gt;
@@ -427,16 +432,16 @@ Template Bundle could look like this (notice the parent element):</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;TranslationTemplateBundle xmlns="http://www.interactive-instruments.de/etf/2.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"
-   id="EID7766b3e6-b7ac-452e-b3c3-c793a591e86c"&gt;
-    &lt;parent ref="EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8"/&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;TranslationTemplateBundle xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd&quot;
+   id=&quot;EID7766b3e6-b7ac-452e-b3c3-c793a591e86c&quot;&gt;
+    &lt;parent ref=&quot;EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8&quot;/&gt;
     &lt;translationTemplateCollections&gt;
-      &lt;LangTranslationTemplateCollection name="TR.incorrectRoot"&gt;
+      &lt;LangTranslationTemplateCollection name=&quot;TR.incorrectRoot&quot;&gt;
          &lt;translationTemplates&gt;
-            &lt;TranslationTemplate language="en" name="TR.incorrectRoot"&gt;XML document '{filename}': The root element is not one of the recognised feature collections: wfs:FeatureCollection (WFS 1.1 or WFS 2.0) or gml:FeatureCollection (GML 3.1 or GML 3.2). The name of the root element is '{elementName}' in namespace '{namespace}'.&lt;/TranslationTemplate&gt;
-            &lt;TranslationTemplate language="de" name="TR.incorrectRoot"&gt;XML-Dokument '{filename}': Das Wurzelelement ist keines der erwarteten Feature-Collection-Elemente: wfs:FeatureCollection (WFS 1.1 oder WFS 2.0) oder gml:FeatureCollection (GML 3.1 oder GML 3.2). Der Name des Wurzelelements is '{elementName}' im Namensraum '{namespace}'.&lt;/TranslationTemplate&gt;
+            &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.incorrectRoot&quot;&gt;XML document &#39;{filename}&#39;: The root element is not one of the recognised feature collections: wfs:FeatureCollection (WFS 1.1 or WFS 2.0) or gml:FeatureCollection (GML 3.1 or GML 3.2). The name of the root element is &#39;{elementName}&#39; in namespace &#39;{namespace}&#39;.&lt;/TranslationTemplate&gt;
+            &lt;TranslationTemplate language=&quot;de&quot; name=&quot;TR.incorrectRoot&quot;&gt;XML-Dokument &#39;{filename}&#39;: Das Wurzelelement ist keines der erwarteten Feature-Collection-Elemente: wfs:FeatureCollection (WFS 1.1 oder WFS 2.0) oder gml:FeatureCollection (GML 3.1 oder GML 3.2). Der Name des Wurzelelements is &#39;{elementName}&#39; im Namensraum &#39;{namespace}&#39;.&lt;/TranslationTemplate&gt;
          &lt;/translationTemplates&gt;
       &lt;/LangTranslationTemplateCollection&gt;
     &lt;/translationTemplateCollections&gt;
@@ -478,9 +483,9 @@ How Execuable Test Suites are associated with tags differs between test engines 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Tag xmlns="http://www.interactive-instruments.de/etf/2.0" id="EIDfe1f3796-0ebf-4960-a6f7-f935e087fa4b" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Tag xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot; id=&quot;EIDfe1f3796-0ebf-4960-a6f7-f935e087fa4b&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd&quot;&gt;
 	&lt;label&gt;Data Theme: Administrative Units (Data Specification version 3.1)&lt;/label&gt;
-	&lt;description&gt;Tests for conformance classes specific to features of the data theme 'Administrative Units'.&lt;/description&gt;
+	&lt;description&gt;Tests for conformance classes specific to features of the data theme &#39;Administrative Units&#39;.&lt;/description&gt;
 	&lt;priority&gt;202&lt;/priority&gt;
 &lt;/Tag&gt;</code></pre>
 </div>
@@ -660,6 +665,22 @@ declare variable $etsFile external := $projDir || file:dir-separator() || "ets-t
 <div class="paragraph">
 <p>Executing the XQuery should now execute the test suite.</p>
 </div>
+<div class="paragraph">
+<p>There are additional steps, in case the testproject uses a prepare-chunk document (see <a href="#the-prepare-chunk-document">below</a> for more information):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the external variable <code>$dbName</code> to the name of your database in BaseX.</p>
+</li>
+<li>
+<p>Open and run the prepare-chunk document.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Executing the XQuery document should now execute the test suite.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_best_practices">3.2.3. Best practices</h4>
@@ -705,9 +726,9 @@ An Executable Test Suite is essentially an <a href="http://www.w3.org/TR/xquery-
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;EtfModelItem xmlns="http://www.interactive-instruments.de/etf/2.0"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd" ...&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;EtfModelItem xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd&quot; ...&gt;
   ...
 &lt;/EtfModelItem&gt;</code></pre>
 </div>
@@ -720,77 +741,77 @@ An Executable Test Suite is essentially an <a href="http://www.w3.org/TR/xquery-
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;TestTaskResult xmlns="http://www.interactive-instruments.de/etf/2.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd"
-    id="EIDc5e50620-5107-4b75-b6c1-74d4465fba0f"&gt;
-    &lt;testObject ref="EID666f71c1-9af3-4040-a21d-190f953725f4"/&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;TestTaskResult xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd&quot;
+    id=&quot;EIDc5e50620-5107-4b75-b6c1-74d4465fba0f&quot;&gt;
+    &lt;testObject ref=&quot;EID666f71c1-9af3-4040-a21d-190f953725f4&quot;/&gt;
     &lt;testModuleResults&gt;
-        &lt;TestModuleResult id="EIDfdfc25d5-1790-43bd-abb6-2de6263619cc"&gt;
+        &lt;TestModuleResult id=&quot;EIDfdfc25d5-1790-43bd-abb6-2de6263619cc&quot;&gt;
             &lt;testCaseResults&gt;
-                &lt;TestCaseResult id="EID3dab6279-f553-4f93-b1bc-b73329fc69c3"&gt;
+                &lt;TestCaseResult id=&quot;EID3dab6279-f553-4f93-b1bc-b73329fc69c3&quot;&gt;
                     &lt;testStepResults&gt;
-                        &lt;TestStepResult id="EIDffaf6f6a-66f6-4796-8c42-e5f681517c62"&gt;
+                        &lt;TestStepResult id=&quot;EIDffaf6f6a-66f6-4796-8c42-e5f681517c62&quot;&gt;
                             &lt;testAssertionResults&gt;
-                                &lt;TestAssertionResult id="EIDa35d1dd3-7cc2-41c7-9b2b-f60df48ffabb"&gt;
-                                    &lt;parent ref="EIDffaf6f6a-66f6-4796-8c42-e5f681517c62"/&gt;
-                                    &lt;resultedFrom ref="EIDcab35f1a-6292-44b9-ae2c-9ec62fc0f4b6"/&gt;
+                                &lt;TestAssertionResult id=&quot;EIDa35d1dd3-7cc2-41c7-9b2b-f60df48ffabb&quot;&gt;
+                                    &lt;parent ref=&quot;EIDffaf6f6a-66f6-4796-8c42-e5f681517c62&quot;/&gt;
+                                    &lt;resultedFrom ref=&quot;EIDcab35f1a-6292-44b9-ae2c-9ec62fc0f4b6&quot;/&gt;
                                     &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
                                     &lt;duration&gt;0&lt;/duration&gt;
                                     &lt;status&gt;PASSED&lt;/status&gt;
                                 &lt;/TestAssertionResult&gt;
-                                &lt;TestAssertionResult id="EIDc18b01ff-f544-4d0e-9a8f-ef3874abd43f"&gt;
+                                &lt;TestAssertionResult id=&quot;EIDc18b01ff-f544-4d0e-9a8f-ef3874abd43f&quot;&gt;
                                     &lt;messages&gt;
-                                        &lt;message ref="TR.filesWithErrors"&gt;
+                                        &lt;message ref=&quot;TR.filesWithErrors&quot;&gt;
                                             &lt;translationArguments&gt;
-                                                &lt;argument token="count"&gt;1&lt;/argument&gt;
+                                                &lt;argument token=&quot;count&quot;&gt;1&lt;/argument&gt;
                                             &lt;/translationArguments&gt;
                                         &lt;/message&gt;
-                                        &lt;message ref="TR.incorrectRoot"&gt;
+                                        &lt;message ref=&quot;TR.incorrectRoot&quot;&gt;
                                             &lt;translationArguments&gt;
-                                                &lt;argument token="filename"&gt;ps-root.xml&lt;/argument&gt;
-                                                &lt;argument token="elementName"&gt;FeatureCollection&lt;/argument&gt;
-                                                &lt;argument token="namespace"&gt;http://www.opengis.net/wfs&lt;/argument&gt;
+                                                &lt;argument token=&quot;filename&quot;&gt;ps-root.xml&lt;/argument&gt;
+                                                &lt;argument token=&quot;elementName&quot;&gt;FeatureCollection&lt;/argument&gt;
+                                                &lt;argument token=&quot;namespace&quot;&gt;http://www.opengis.net/wfs&lt;/argument&gt;
                                             &lt;/translationArguments&gt;
                                         &lt;/message&gt;
                                     &lt;/messages&gt;
-                                    &lt;parent ref="EIDffaf6f6a-66f6-4796-8c42-e5f681517c62"/&gt;
-                                    &lt;resultedFrom ref="EID928d8204-3015-4811-82fd-f4779b35385b"/&gt;
+                                    &lt;parent ref=&quot;EIDffaf6f6a-66f6-4796-8c42-e5f681517c62&quot;/&gt;
+                                    &lt;resultedFrom ref=&quot;EID928d8204-3015-4811-82fd-f4779b35385b&quot;/&gt;
                                     &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
                                     &lt;duration&gt;1&lt;/duration&gt;
                                     &lt;status&gt;FAILED&lt;/status&gt;
                                 &lt;/TestAssertionResult&gt;
                             &lt;/testAssertionResults&gt;
-                            &lt;parent ref="EID3dab6279-f553-4f93-b1bc-b73329fc69c3"/&gt;
-                            &lt;resultedFrom ref="EIDc177cf64-3a66-4ac4-92b9-61207aab8007"/&gt;
+                            &lt;parent ref=&quot;EID3dab6279-f553-4f93-b1bc-b73329fc69c3&quot;/&gt;
+                            &lt;resultedFrom ref=&quot;EIDc177cf64-3a66-4ac4-92b9-61207aab8007&quot;/&gt;
                             &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
                             &lt;duration&gt;1&lt;/duration&gt;
                             &lt;status&gt;FAILED&lt;/status&gt;
                         &lt;/TestStepResult&gt;
                     &lt;/testStepResults&gt;
-                    &lt;parent ref="EIDfdfc25d5-1790-43bd-abb6-2de6263619cc"/&gt;
-                    &lt;resultedFrom ref="EIDf66872d4-3a1f-4581-a501-94200219bf13"/&gt;
+                    &lt;parent ref=&quot;EIDfdfc25d5-1790-43bd-abb6-2de6263619cc&quot;/&gt;
+                    &lt;resultedFrom ref=&quot;EIDf66872d4-3a1f-4581-a501-94200219bf13&quot;/&gt;
                     &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
                     &lt;duration&gt;1&lt;/duration&gt;
                     &lt;status&gt;FAILED&lt;/status&gt;
                 &lt;/TestCaseResult&gt;
             &lt;/testCaseResults&gt;
-            &lt;parent ref="EIDc5e50620-5107-4b75-b6c1-74d4465fba0f"/&gt;
-            &lt;resultedFrom ref="EID8e96257c-ae42-4123-b298-b8c5eda3a027"/&gt;
+            &lt;parent ref=&quot;EIDc5e50620-5107-4b75-b6c1-74d4465fba0f&quot;/&gt;
+            &lt;resultedFrom ref=&quot;EID8e96257c-ae42-4123-b298-b8c5eda3a027&quot;/&gt;
             &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
             &lt;duration&gt;1&lt;/duration&gt;
             &lt;status&gt;FAILED&lt;/status&gt;
         &lt;/TestModuleResult&gt;
     &lt;/testModuleResults&gt;
     &lt;attachments&gt;
-        &lt;Attachment id="EIDc5e50620-5111-4bc5-b6c1-74d4465fbb23"&gt;
+        &lt;Attachment id=&quot;EIDc5e50620-5111-4bc5-b6c1-74d4465fbb23&quot;&gt;
             &lt;label&gt;Log file&lt;/label&gt;
             &lt;encoding&gt;UTF-8&lt;/encoding&gt;
             &lt;mimeType&gt;text/plain&lt;/mimeType&gt;
-            &lt;referencedData href="file://local/log.txt"/&gt;
+            &lt;referencedData href=&quot;file://local/log.txt&quot;/&gt;
         &lt;/Attachment&gt;
     &lt;/attachments&gt;
-    &lt;resultedFrom ref="EID545f9e49-009b-4114-9333-7ca26413b5d4"/&gt;
+    &lt;resultedFrom ref=&quot;EID545f9e49-009b-4114-9333-7ca26413b5d4&quot;/&gt;
     &lt;startTimestamp&gt;2016-09-05T13:10:24Z&lt;/startTimestamp&gt;
     &lt;duration&gt;1&lt;/duration&gt;
     &lt;status&gt;FAILED&lt;/status&gt;
@@ -845,16 +866,16 @@ be used (<code>$statusValues</code> is the sequence of status values from the lo
 level result items):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQUERY">declare function local:status($statusValues as xs:string*) as xs:string
+<pre class="pygments highlight"><code data-lang="XQUERY"><span></span>declare function local:status($statusValues as xs:string*) as xs:string
 {
-    if ($statusValues ='FAILED') then 'FAILED'
-    else if ($statusValues ='SKIPPED') then 'SKIPPED'
-    else if ($statusValues ='WARNING') then 'WARNING'
-    else if ($statusValues ='INFO') then 'INFO'
-    else if ($statusValues ='PASSED_MANUAL') then 'PASSED_MANUAL'
-    else if ($statusValues ='PASSED') then 'PASSED'
-    else if ($statusValues ='NOT_APPLICABLE') then 'NOT_APPLICABLE'
-    else 'UNDEFINED'
+    if ($statusValues =&#39;FAILED&#39;) then &#39;FAILED&#39;
+    else if ($statusValues =&#39;SKIPPED&#39;) then &#39;SKIPPED&#39;
+    else if ($statusValues =&#39;WARNING&#39;) then &#39;WARNING&#39;
+    else if ($statusValues =&#39;INFO&#39;) then &#39;INFO&#39;
+    else if ($statusValues =&#39;PASSED_MANUAL&#39;) then &#39;PASSED_MANUAL&#39;
+    else if ($statusValues =&#39;PASSED&#39;) then &#39;PASSED&#39;
+    else if ($statusValues =&#39;NOT_APPLICABLE&#39;) then &#39;NOT_APPLICABLE&#39;
+    else &#39;UNDEFINED&#39;
 };</code></pre>
 </div>
 </div>
@@ -950,60 +971,60 @@ content, the file names have to use a suffix "-bsxets.xml".</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;ExecutableTestSuite xmlns="http://www.interactive-instruments.de/etf/2.0"     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd" id="EID545f9e49-009b-4114-9333-7ca26413b5d4"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ExecutableTestSuite xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd&quot; id=&quot;EID545f9e49-009b-4114-9333-7ca26413b5d4&quot;&gt;
     &lt;itemHash&gt;bQ==&lt;/itemHash&gt;
     &lt;remoteResource&gt;http://github.com/inspire-eu-validation/ets-repository/data-encoding/inspire-gml&lt;/remoteResource&gt;
     &lt;localPath&gt;/auto&lt;/localPath&gt;
     &lt;label&gt;Conformance class: INSPIRE GML encoding&lt;/label&gt;
     &lt;description&gt;&lt;![CDATA[This test suite examines GML documents against basic requirements for the GML encoding for spatial data sets in INSPIRE. This only covers application-schema-independent, generic requirements. Requirements related to specific application schemas are part of conformance classes with a dependency on this conformance class.&lt;br/&gt;&lt;br/&gt;
-&lt;b&gt;This is a draft version. It has limitations and is expected to contain errors.&lt;/b&gt; Please report any issues or problems &lt;a href="https://github.com/interactive-instruments/ets-repository/issues" target="_blank"&gt;in GitHub&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+&lt;b&gt;This is a draft version. It has limitations and is expected to contain errors.&lt;/b&gt; Please report any issues or problems &lt;a href=&quot;https://github.com/interactive-instruments/ets-repository/issues&quot; target=&quot;_blank&quot;&gt;in GitHub&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
 Known limitations are documented in the description of the applicable test case or test assertion.&lt;br/&gt;&lt;br/&gt;
-Source: &lt;a href="http://inspire.ec.europa.eu/id/ats/data-encoding/3.3/inspire-gml" target="_blank"&gt;Conformance Class 'INSPIRE GML encoding'&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+Source: &lt;a href=&quot;http://inspire.ec.europa.eu/id/ats/data-encoding/3.3/inspire-gml&quot; target=&quot;_blank&quot;&gt;Conformance Class &#39;INSPIRE GML encoding&#39;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
 Pre-requisite conformance classes:
-&lt;ul&gt;&lt;li&gt;Conformance Class 'GML 3.2 documents [OGC]'&lt;/li&gt;&lt;/ul&gt;]]&gt;&lt;/description&gt;
+&lt;ul&gt;&lt;li&gt;Conformance Class &#39;GML 3.2 documents [OGC]&#39;&lt;/li&gt;&lt;/ul&gt;]]&gt;&lt;/description&gt;
     &lt;reference&gt;../../inspire-bsxets.xq&lt;/reference&gt;
     &lt;version&gt;0.1.0&lt;/version&gt;
     &lt;author&gt;interactive instruments GmbH&lt;/author&gt;
     &lt;creationDate&gt;2016-08-15T00:00:00Z&lt;/creationDate&gt;
     &lt;lastEditor&gt;interactive instruments GmbH&lt;/lastEditor&gt;
     &lt;lastUpdateDate&gt;2016-08-15T00:00:00Z&lt;/lastUpdateDate&gt;
-    &lt;testDriver ref="EID4dddc9e2-1b21-40b7-af70-6a2d156ad130"/&gt;
-    &lt;translationTemplateBundle ref="EID70a263c0-0ad7-42f2-9d4d-0d8a4ca71b52"/&gt;
+    &lt;testDriver ref=&quot;EID4dddc9e2-1b21-40b7-af70-6a2d156ad130&quot;/&gt;
+    &lt;translationTemplateBundle ref=&quot;EID70a263c0-0ad7-42f2-9d4d-0d8a4ca71b52&quot;/&gt;
     &lt;supportedTestObjectTypes&gt;
-        &lt;testObjectType ref="EIDe1d4a306-7a78-4a3b-ae2d-cf5f0810853e"/&gt;
+        &lt;testObjectType ref=&quot;EIDe1d4a306-7a78-4a3b-ae2d-cf5f0810853e&quot;/&gt;
     &lt;/supportedTestObjectTypes&gt;
     &lt;testModules&gt;
-        &lt;TestModule id="EID8e96257c-ae42-4123-b298-b8c5eda3a027"&gt;
+        &lt;TestModule id=&quot;EID8e96257c-ae42-4123-b298-b8c5eda3a027&quot;&gt;
             &lt;label&gt;IGNORE&lt;/label&gt;
             &lt;description&gt;IGNORE&lt;/description&gt;
-            &lt;parent ref="EID545f9e49-009b-4114-9333-7ca26413b5d4"/&gt;
+            &lt;parent ref=&quot;EID545f9e49-009b-4114-9333-7ca26413b5d4&quot;/&gt;
             &lt;testCases&gt;
-                &lt;TestCase id="EIDf66872d4-3a1f-4581-a501-94200219bf13"&gt;
+                &lt;TestCase id=&quot;EIDf66872d4-3a1f-4581-a501-94200219bf13&quot;&gt;
                     &lt;label&gt;Basic tests&lt;/label&gt;
                     &lt;description&gt;Verify that all documents contain GML features and use the expected character encoding.&lt;/description&gt;
-                    &lt;parent ref="EID8e96257c-ae42-4123-b298-b8c5eda3a027"/&gt;
+                    &lt;parent ref=&quot;EID8e96257c-ae42-4123-b298-b8c5eda3a027&quot;/&gt;
                     &lt;testSteps&gt;
-                        &lt;TestStep id="EIDc177cf64-3a66-4ac4-92b9-61207aab8007"&gt;
+                        &lt;TestStep id=&quot;EIDc177cf64-3a66-4ac4-92b9-61207aab8007&quot;&gt;
                             &lt;label&gt;IGNORE&lt;/label&gt;
                             &lt;description&gt;IGNORE&lt;/description&gt;
-                            &lt;parent ref="EIDf66872d4-3a1f-4581-a501-94200219bf13"/&gt;
+                            &lt;parent ref=&quot;EIDf66872d4-3a1f-4581-a501-94200219bf13&quot;/&gt;
                             &lt;statementForExecution&gt;not applicable&lt;/statementForExecution&gt;
-                            &lt;testItemType ref="EIDf483e8e8-06b9-4900-ab36-adad0d7f22f0"/&gt;
+                            &lt;testItemType ref=&quot;EIDf483e8e8-06b9-4900-ab36-adad0d7f22f0&quot;/&gt;
                             &lt;testAssertions&gt;
-                                &lt;TestAssertion id="EIDcab35f1a-6292-44b9-ae2c-9ec62fc0f4b6"&gt;
+                                &lt;TestAssertion id=&quot;EIDcab35f1a-6292-44b9-ae2c-9ec62fc0f4b6&quot;&gt;
                                     &lt;label&gt;gml.a.1: Errors loading the XML documents&lt;/label&gt;
                                     &lt;description&gt;&lt;![CDATA[Report errors that occurred during loading the documents in the test object. A typical example is an XML document that is not well-formed and therefore cannot be processed.]]&gt;&lt;/description&gt;
-                                    &lt;parent ref="EIDc177cf64-3a66-4ac4-92b9-61207aab8007"/&gt;
+                                    &lt;parent ref=&quot;EIDc177cf64-3a66-4ac4-92b9-61207aab8007&quot;/&gt;
                                     &lt;expectedResult&gt;NOT_APPLICABLE&lt;/expectedResult&gt;
-                                    &lt;expression&gt;if (not($validationErrors)) then 'PASSED' else ('FAILED', for $error in $validationErrors return (local:addMessage('TR.valdiationError', map { 'text': $error })))&lt;/expression&gt;
-                                    &lt;testItemType ref="EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a"/&gt;
+                                    &lt;expression&gt;if (not($validationErrors)) then &#39;PASSED&#39; else (&#39;FAILED&#39;, for $error in $validationErrors return (local:addMessage(&#39;TR.valdiationError&#39;, map { &#39;text&#39;: $error })))&lt;/expression&gt;
+                                    &lt;testItemType ref=&quot;EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a&quot;/&gt;
                                     &lt;translationTemplates&gt;
-                                        &lt;translationTemplate ref="TR.valdiationError"/&gt;
+                                        &lt;translationTemplate ref=&quot;TR.valdiationError&quot;/&gt;
                                     &lt;/translationTemplates&gt;
                                 &lt;/TestAssertion&gt;
-                                &lt;TestAssertion id="EID928d8204-3015-4811-82fd-f4779b35385b"&gt;
+                                &lt;TestAssertion id=&quot;EID928d8204-3015-4811-82fd-f4779b35385b&quot;&gt;
                                     &lt;label&gt;gml.a.2: Document root element&lt;/label&gt;
                                     &lt;description&gt;&lt;![CDATA[Check for each XML document that the root element is a GML feature or a GML feature collection.&lt;br/&gt;&lt;br/&gt;
 For feature collections the following root elements are recognised:
@@ -1019,24 +1040,24 @@ Relevant requirements and recommendations:
 &lt;ul&gt;
 &lt;li&gt;Currently only feature collections are recognized as the test engine BaseX is not schema-aware. A new extension function is required to identify all feature elements.&lt;/li&gt;
 &lt;/ul&gt;
-Source: &lt;a href="" target="_blank"&gt;Abstract Test Case 'Basic test'&lt;/a&gt;]]&gt;&lt;/description&gt;
-                                    &lt;parent ref="EIDc177cf64-3a66-4ac4-92b9-61207aab8007"/&gt;
+Source: &lt;a href=&quot;&quot; target=&quot;_blank&quot;&gt;Abstract Test Case &#39;Basic test&#39;&lt;/a&gt;]]&gt;&lt;/description&gt;
+                                    &lt;parent ref=&quot;EIDc177cf64-3a66-4ac4-92b9-61207aab8007&quot;/&gt;
                                     &lt;expectedResult&gt;NOT_APPLICABLE&lt;/expectedResult&gt;
                                     &lt;expression&gt;
 let $filesWithErrors := $db[not(wfs:FeatureCollection or gml:FeatureCollection or base32:SpatialDataSet or base:SpatialDataSet or gml:AbstractFeature)][position() le $limitErrors]
 return
-(if ($filesWithErrors) then 'FAILED' else 'PASSED',
- local:error-statistics('TR.filesWithErrors', count($filesWithErrors)),
+(if ($filesWithErrors) then &#39;FAILED&#39; else &#39;PASSED&#39;,
+ local:error-statistics(&#39;TR.filesWithErrors&#39;, count($filesWithErrors)),
  for $file in $filesWithErrors
     order by local:filename($file)
     let $root := $file/element()
     return
-    local:addMessage('TR.incorrectRoot', map { 'filename': local:filename($root), 'elementName': local-name($root), 'namespace': namespace-uri($root) }))
+    local:addMessage(&#39;TR.incorrectRoot&#39;, map { &#39;filename&#39;: local:filename($root), &#39;elementName&#39;: local-name($root), &#39;namespace&#39;: namespace-uri($root) }))
                                     &lt;/expression&gt;
-                                    &lt;testItemType ref="EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a"/&gt;
+                                    &lt;testItemType ref=&quot;EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a&quot;/&gt;
                                     &lt;translationTemplates&gt;
-                                        &lt;translationTemplate ref="TR.incorrectRoot"/&gt;
-                                        &lt;translationTemplate ref="TR.filesWithErrors"/&gt;
+                                        &lt;translationTemplate ref=&quot;TR.incorrectRoot&quot;/&gt;
+                                        &lt;translationTemplate ref=&quot;TR.filesWithErrors&quot;/&gt;
                                     &lt;/translationTemplates&gt;
                                 &lt;/TestAssertion&gt;
                             &lt;/testAssertions&gt;
@@ -1460,9 +1481,39 @@ currently defined in generic-query-prolog.xq:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="spatial-tests">3.7. Testing spatial aspects</h3>
+<h3 id="the-prepare-chunk-document">3.7. The prepare-chunk document</h3>
+<div class="paragraph">
+<p>A prepare-chunk.xq document is optional but can be used to preprocess testdata.</p>
+</div>
+<div class="paragraph">
+<p>Example usage: Prepare a spatial index and extract all objects with erroneous geometry before executing the tests.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>For every given chunk, prepare-chunk.xq will be executed.</p>
+</li>
+<li>
+<p>The name of the chunk is passed to the document through the variable <code>$dbName</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spatial-tests">3.8. Testing spatial aspects</h3>
 <div class="sect3">
-<h4 id="_overview_2">3.7.1. Overview</h4>
+<h4 id="_overview_2">3.8.1. Overview</h4>
 <div class="paragraph">
 <p>The GmlGeoX extension module extends XQuery with additional capabilities:</p>
 </div>
@@ -1487,7 +1538,7 @@ currently defined in generic-query-prolog.xq:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_spatial_indexing">3.7.2. Spatial indexing</h4>
+<h4 id="_spatial_indexing">3.8.2. Spatial indexing</h4>
 <div class="paragraph">
 <p>Feature geometries can be indexed using an r*-tree. To index a feature execute <code>ggeo:index( Node featureNode, String id, Node xmlGeometry )</code>.</p>
 </div>
@@ -1517,7 +1568,7 @@ references will become obsolete.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQuery">let $dummy := for $feature in $features
+<pre class="pygments highlight"><code data-lang="XQuery"><span></span>let $dummy := for $feature in $features
 	return ggeo:index(db:node-pre($feature),db:name($feature),$feature/@gml:id,$feature/ns:geometry/*[1])</code></pre>
 </div>
 </div>
@@ -1531,7 +1582,7 @@ references will become obsolete.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQuery">let $env := ggeo:envelope($candidate_geometry)
+<pre class="pygments highlight"><code data-lang="XQuery"><span></span>let $env := ggeo:envelope($candidate_geometry)
 let $overlapping_features := ggeo:search($env[1],$env[2],$env[3],$env[4])</code></pre>
 </div>
 </div>
@@ -1542,7 +1593,7 @@ let $overlapping_features := ggeo:search($env[1],$env[2],$env[3],$env[4])</code>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQuery">let $geometries :=
+<pre class="pygments highlight"><code data-lang="XQuery"><span></span>let $geometries :=
 	for $feature in ggeo:search($env[1],$env[2],$env[3],$env[4])
 		return ggeo:getGeometry($feature/@gml:id,$feature/ns:geometry/*[1])</code></pre>
 </div>
@@ -1551,7 +1602,7 @@ let $overlapping_features := ggeo:search($env[1],$env[2],$env[3],$env[4])</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_geometry_caching">3.7.3. Geometry caching</h4>
+<h4 id="_geometry_caching">3.8.3. Geometry caching</h4>
 <div class="paragraph">
 <p>The parsed geometries are cached during indexing to avoid multiple computations of the geometries from the XML. The cache size can be set before the indexing is started using <code>ggeo:cacheSize( int size )</code>, the default size is 100000 geometries. The cache is transparent to the user of the GmlGeoX module.</p>
 </div>
@@ -1560,7 +1611,7 @@ let $overlapping_features := ggeo:search($env[1],$env[2],$env[3],$env[4])</code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_geometry_validation">3.7.4. Geometry Validation</h4>
+<h4 id="_geometry_validation">3.8.4. Geometry Validation</h4>
 <div class="paragraph">
 <p>Validation of GML geometry elements within a given XML node is basically a SAX-based scan for recognized GML geometry elements, and subsequent validation of these elements. The default set of recognized element names is a subset of GML. Functions offered by the module can be used to modify this set within an XQuery. See the <a href="https://github.com/interactive-instruments/etf-webapp/wiki/dev_manual_modules_gmlgeox">test project developer documentation for this module</a> for further details.</p>
 </div>
@@ -1572,22 +1623,22 @@ let $overlapping_features := ggeo:search($env[1],$env[2],$env[3],$env[4])</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQuery">let $messages := for $feature in $features
+<pre class="pygments highlight"><code data-lang="XQuery"><span></span>let $messages := for $feature in $features
   return
 	try {
-		let $vr := ggeo:validateAndReport($feature,'110')
+		let $vr := ggeo:validateAndReport($feature,&#39;110&#39;)
 		return
 	   if (xs:boolean($vr/ggeo:isValid)) then ()
 	   else
-	   	for $message in $vr/ggeo:message[@type='ERROR']
+	   	for $message in $vr/ggeo:message[@type=&#39;ERROR&#39;]
 			return
-				local:addMessage('TR.invalidGeometry', map { 'filename': local:filename($feature), 'featureType': local-name($feature), 'gmlid': string($feature/@gml:id), 'text': $message/text() })
+				local:addMessage(&#39;TR.invalidGeometry&#39;, map { &#39;filename&#39;: local:filename($feature), &#39;featureType&#39;: local-name($feature), &#39;gmlid&#39;: string($feature/@gml:id), &#39;text&#39;: $message/text() })
 	} catch * {
 		return () (: do not raise an error for parsing exceptions, if these are tested already elsewhere :)
 	}
 return
-(if ($messages) then 'FAILED' else 'PASSED',
- local:error-statistics('TR.featuresWithErrors', count(fn:distinct-values($messages//etf:argument[@token='gmlid']/text()))),
+(if ($messages) then &#39;FAILED&#39; else &#39;PASSED&#39;,
+ local:error-statistics(&#39;TR.featuresWithErrors&#39;, count(fn:distinct-values($messages//etf:argument[@token=&#39;gmlid&#39;]/text()))),
  $messages)</code></pre>
 </div>
 </div>
@@ -1595,7 +1646,7 @@ return
 </div>
 </div>
 <div class="sect3">
-<h4 id="_evaluation_of_topological_predicates">3.7.5. Evaluation of topological predicates</h4>
+<h4 id="_evaluation_of_topological_predicates">3.8.5. Evaluation of topological predicates</h4>
 <div class="paragraph">
 <p>Topological predicates between two geometries are evaluated using the JTS library. The standard predicates specified in the OGC Simple Feature standard are supported. See the <a href="https://github.com/interactive-instruments/etf-webapp/wiki/dev_manual_modules_gmlgeox">test project developer documentation for this module</a> for further details.</p>
 </div>
@@ -1607,7 +1658,7 @@ return
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XQuery">let $messages :=
+<pre class="pygments highlight"><code data-lang="XQuery"><span></span>let $messages :=
 (for $candidate in $features
  return
  try {
@@ -1619,13 +1670,13 @@ return
    return
    try {
    let $other_geometry := ggeo:getGeometry($feature/@gml:id,$feature/*:geometry/*[1])
-   let $check := ggeo:relate($candidate_geometry, $other_geometry, 'F********')
+   let $check := ggeo:relate($candidate_geometry, $other_geometry, &#39;F********&#39;)
 	return
 	if ($check) then ()
 	else
 	let $intersection := string(ggeo:intersection($candidate_geometry, $other_geometry))
-	let $polygons := functx:get-matches($intersection,'POLYGON\s?\(\s?\([\d,\.\s]+\)\s?\)')[fn:string-length(.)&gt;0]
-	return local:addMessage('TR.Overlap', map { 'filename': local:filename($candidate), 'featureType' : local-name($candidate), 'gmlid': string($candidate/@gml:id), 'gmlid2': string($feature/@gml:id), 'sharedArea': fn:string-join($polygons, ', ') })
+	let $polygons := functx:get-matches($intersection,&#39;POLYGON\s?\(\s?\([\d,\.\s]+\)\s?\)&#39;)[fn:string-length(.)&gt;0]
+	return local:addMessage(&#39;TR.Overlap&#39;, map { &#39;filename&#39;: local:filename($candidate), &#39;featureType&#39; : local-name($candidate), &#39;gmlid&#39;: string($candidate/@gml:id), &#39;gmlid2&#39;: string($feature/@gml:id), &#39;sharedArea&#39;: fn:string-join($polygons, &#39;, &#39;) })
 	} catch * {
     return () (: do not raise an error for parsing exceptions, if these are tested already elsewhere :)
 	}
@@ -1634,8 +1685,8 @@ return
  }
 )[position() le $limitErrors]
 return
-(if ($messages) then 'FAILED' else 'PASSED',
- local:error-statistics('TR.featuresWithErrors', count(fn:distinct-values($messages//etf:argument[@token='gmlid']/text()))),
+(if ($messages) then &#39;FAILED&#39; else &#39;PASSED&#39;,
+ local:error-statistics(&#39;TR.featuresWithErrors&#39;, count(fn:distinct-values($messages//etf:argument[@token=&#39;gmlid&#39;]/text()))),
  $messages)</code></pre>
 </div>
 </div>
@@ -1643,7 +1694,7 @@ return
 </div>
 </div>
 <div class="sect3">
-<h4 id="_known_limitations">3.7.6. Known limitations</h4>
+<h4 id="_known_limitations">3.8.6. Known limitations</h4>
 <div class="paragraph">
 <p>The implementation of the GmlGeoX module depends to a large extent on the deegree framework. The default geometry implementation of deegree does not support parsing all GML types, primarily the GML 3.3 types. Also, in a number of cases spatial operations are not supported for parsed geometries. This is primarily due to the fact that deegree relies on JTS to perform these operations, and that therefore the geometries must be simplified/linearized - which is not implemented for all geometry types that can be parsed by deegree. There is even a case where an incomplete JTS representations of a deegree geometry is accepted and used for spatial operations (for a surface with multiple polygon patches only the first is used).</p>
 </div>
@@ -1656,7 +1707,7 @@ return
 </div>
 </div>
 <div class="sect2">
-<h3 id="parameters">3.8. Parameters</h3>
+<h3 id="parameters">3.9. Parameters</h3>
 <div class="paragraph">
 <p>Parameters for each Exectuable Test Suite may be declared as part of the
 <code>etf:ExecutableTestSuite</code> document. The ETF web application will include
@@ -1686,16 +1737,16 @@ value '.*' matches all test assertions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">    &lt;ParameterList name="ETF Standard Parameters for XML test objects"&gt;
-        &lt;parameter name="files_to_test" required="true"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>    &lt;ParameterList name=&quot;ETF Standard Parameters for XML test objects&quot;&gt;
+        &lt;parameter name=&quot;files_to_test&quot; required=&quot;true&quot;&gt;
             &lt;defaultValue&gt;.*&lt;/defaultValue&gt;
-            &lt;description ref="TR.filesToTest"/&gt;
+            &lt;description ref=&quot;TR.filesToTest&quot;/&gt;
             &lt;allowedValues&gt;.*&lt;/allowedValues&gt;
             &lt;type&gt;string&lt;/type&gt;
         &lt;/parameter&gt;
-        &lt;parameter name="tests_to_execute" required="false"&gt;
+        &lt;parameter name=&quot;tests_to_execute&quot; required=&quot;false&quot;&gt;
             &lt;defaultValue&gt;.*&lt;/defaultValue&gt;
-            &lt;description ref="TR.testsToExecute"/&gt;
+            &lt;description ref=&quot;TR.testsToExecute&quot;/&gt;
             &lt;allowedValues&gt;.*&lt;/allowedValues&gt;
             &lt;type&gt;string&lt;/type&gt;
         &lt;/parameter&gt;
@@ -1704,9 +1755,9 @@ value '.*' matches all test assertions.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="basex-test-object-types">3.9. Test Object Types</h3>
+<h3 id="basex-test-object-types">3.10. Test Object Types</h3>
 <div class="sect3">
-<h4 id="_overview_3">3.9.1. Overview</h4>
+<h4 id="_overview_3">3.10.1. Overview</h4>
 <div class="paragraph">
 <p>This section lists all <a href="#test-object-types">Test Object Types</a> that are pre-defined in the BaseX test driver.</p>
 </div>
@@ -1745,7 +1796,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="tot-documents">3.9.2. Set of documents</h4>
+<h4 id="tot-documents">3.10.2. Set of documents</h4>
 <div class="paragraph">
 <p>A set of documents.</p>
 </div>
@@ -1767,7 +1818,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="tot-xml">3.9.3. Set of XML documents</h4>
+<h4 id="tot-xml">3.10.3. Set of XML documents</h4>
 <div class="paragraph">
 <p>A set of XML documents.</p>
 </div>
@@ -1789,7 +1840,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_metadata_records">3.9.4. Metadata records</h4>
+<h4 id="_metadata_records">3.10.4. Metadata records</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains one or more gmd:MD_Metadata elements.</p>
 </div>
@@ -1811,7 +1862,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="tot-gml">3.9.5. GML feature collections</h4>
+<h4 id="tot-gml">3.10.5. GML feature collections</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a GML feature collection.</p>
 </div>
@@ -1833,7 +1884,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wfs_2_0_feature_collections">3.9.6. WFS 2.0 feature collections</h4>
+<h4 id="_wfs_2_0_feature_collections">3.10.6. WFS 2.0 feature collections</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a WFS 2.0 feature collection.</p>
 </div>
@@ -1855,7 +1906,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gml_3_2_feature_collections">3.9.7. GML 3.2 feature collections</h4>
+<h4 id="_gml_3_2_feature_collections">3.10.7. GML 3.2 feature collections</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a GML 3.2 feature collection.</p>
 </div>
@@ -1877,7 +1928,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gml_2_1_gml_3_1_feature_collections">3.9.8. GML 2.1/GML 3.1 feature collections</h4>
+<h4 id="_gml_2_1gml_3_1_feature_collections">3.10.8. GML 2.1/GML 3.1 feature collections</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a GML 2.1 or GML 3.1 feature collection.</p>
 </div>
@@ -1899,7 +1950,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_inspire_spatialdataset_documents">3.9.9. INSPIRE SpatialDataSet documents</h4>
+<h4 id="_inspire_spatialdataset_documents">3.10.9. INSPIRE SpatialDataSet documents</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains an INSPIRE SpatialDataSet.</p>
 </div>
@@ -1921,7 +1972,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_citygml_2_0_citymodel_documents">3.9.10. CityGML 2.0 CityModel documents</h4>
+<h4 id="_citygml_2_0_citymodel_documents">3.10.10. CityGML 2.0 CityModel documents</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a CityGML 2.0 CityModel.</p>
 </div>
@@ -1943,7 +1994,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_citygml_1_0_citymodel_documents">3.9.11. CityGML 1.0 CityModel documents</h4>
+<h4 id="_citygml_1_0_citymodel_documents">3.10.11. CityGML 1.0 CityModel documents</h4>
 <div class="paragraph">
 <p>A set of XML documents. Each document contains a CityGML 1.0 CityModel.</p>
 </div>
@@ -1966,9 +2017,9 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect2">
-<h3 id="basex-test-item-types">3.10. Test Item Types</h3>
+<h3 id="basex-test-item-types">3.11. Test Item Types</h3>
 <div class="sect3">
-<h4 id="_overview_4">3.10.1. Overview</h4>
+<h4 id="_overview_4">3.11.1. Overview</h4>
 <div class="paragraph">
 <p>This section lists all <a href="#test-item-types">Test Item Types</a> that are pre-defined in the BaseX test driver.</p>
 </div>
@@ -1990,7 +2041,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dummy_test_step">3.10.2. Dummy Test Step</h4>
+<h4 id="_dummy_test_step">3.11.2. Dummy Test Step</h4>
 <div class="paragraph">
 <p>In BaseX-based Executable Test Suites the concept of test steps is not used. A dummy test step, which is suppressed in test reports, is therefore created and associated with this test item type.</p>
 </div>
@@ -2008,7 +2059,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_xquery">3.10.3. XQuery</h4>
+<h4 id="_xquery">3.11.3. XQuery</h4>
 <div class="paragraph">
 <p>The element <code>etf:expression</code> in a test assertion contains an XQuery fragment that is executed to determine the result.</p>
 </div>
@@ -2026,7 +2077,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_manual_review">3.10.4. Manual review</h4>
+<h4 id="_manual_review">3.11.4. Manual review</h4>
 <div class="paragraph">
 <p>The element <code>etf:expression</code> in a test assertion is ignored and the assertion result status is always 'PASSED_MANUAL' indicating that a manual review from an expert is required. The review must be specified in the description of the test assertion.</p>
 </div>
@@ -2044,7 +2095,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_disabled">3.10.5. Disabled</h4>
+<h4 id="_disabled">3.11.5. Disabled</h4>
 <div class="paragraph">
 <p>The element <code>etf:expression</code> in a test assertion is ignored and the assertion result status is always 'NOT_APPLICABLE'. The test assertion is disabled. This type should be used only temporarily to disable a test assertion with known issues.</p>
 </div>
@@ -2063,7 +2114,7 @@ be specified by a test developer defined and declared in XML in the
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dependencies">3.11. Dependencies</h3>
+<h3 id="_dependencies">3.12. Dependencies</h3>
 <div class="paragraph">
 <p>Executable Test Suites may depend on other Executable Test Suites. This
 dependency has two effects. Assume we have three test suites where test
@@ -2112,10 +2163,10 @@ that is consistent with the dependencies.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;ExecutableTestSuite ...&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;ExecutableTestSuite ...&gt;
   ...
   &lt;dependencies&gt;
-    &lt;executableTestSuite ref="EID545f9e49-009b-4114-9333-7ca26413b5d4"/&gt;
+    &lt;executableTestSuite ref=&quot;EID545f9e49-009b-4114-9333-7ca26413b5d4&quot;/&gt;
   &lt;/dependencies&gt;
   ...
 &lt;/ExecutableTestSuite&gt;</code></pre>
@@ -2128,12 +2179,12 @@ that is consistent with the dependencies.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;ExecutableTestSuite ...&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;ExecutableTestSuite ...&gt;
   ...
   &lt;TestCase ...&gt;
     ...
     &lt;dependencies&gt;
-      &lt;testCase ref="EID2ee0045f-cf8d-4979-9d7d-76cb465a0314"/&gt;
+      &lt;testCase ref=&quot;EID2ee0045f-cf8d-4979-9d7d-76cb465a0314&quot;/&gt;
     &lt;/dependencies&gt;
     ...
   &lt;TestCase ...&gt;
@@ -2153,7 +2204,7 @@ that is consistent with the dependencies.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tags">3.12. Tags</h3>
+<h3 id="_tags">3.13. Tags</h3>
 <div class="paragraph">
 <p>To associate an Executable Test Suite with a <a href="#tags">tag</a>, the tag is referenced from the XML document of the test suite.</p>
 </div>
@@ -2165,10 +2216,10 @@ that is consistent with the dependencies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;ExecutableTestSuite ...&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;ExecutableTestSuite ...&gt;
   ...
   &lt;tags&gt;
-      &lt;tag ref="EID7f57420f-b228-41ae-9467-86e7ffef6e7e"/&gt;
+      &lt;tag ref=&quot;EID7f57420f-b228-41ae-9467-86e7ffef6e7e&quot;/&gt;
   &lt;/tags&gt;
   ...
 &lt;/ExecutableTestSuite&gt;</code></pre>
@@ -2190,7 +2241,7 @@ that is consistent with the dependencies.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_statistical_information">3.13. Statistical information</h3>
+<h3 id="_statistical_information">3.14. Statistical information</h3>
 <div class="paragraph">
 <p>If a test result includes an <a href="#basex-attachments">attachment</a> with the type "StatisticalReport", a statistical table is included in the test report. The root element must be an <code>etf:StatisticalReportTable</code> and all <code>etf:entry</code> elements are shown - the value before the semicolon in a column "Type" (feature type or metadata record type) and the value after the semicolon in a column "Count" (number of features or metadata records of that type).</p>
 </div>
@@ -2199,8 +2250,8 @@ that is consistent with the dependencies.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;StatisticalReportTable xmlns="http://www.interactive-instruments.de/etf/2.0"&gt;
-&lt;type ref="EID242272e0-3f0a-4e9c-9643-657c4d6d304a"/&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;StatisticalReportTable xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot;&gt;
+&lt;type ref=&quot;EID242272e0-3f0a-4e9c-9643-657c4d6d304a&quot;/&gt;
 &lt;entries&gt;
 &lt;entry&gt;all; 10&lt;/entry&gt;
 &lt;entry&gt;dataset; 5&lt;/entry&gt;
@@ -2213,7 +2264,7 @@ that is consistent with the dependencies.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="basex-attachments">3.14. Attachments</h3>
+<h3 id="basex-attachments">3.15. Attachments</h3>
 <div class="paragraph">
 <p>An Executable Test Suite may record additional information to a test
 result as attachments. In the case of tests on XML documents, these are
@@ -2246,24 +2297,24 @@ and the links to them are included in the <code>etf:TestTaskResult</code>.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;attachments&gt;
-  &lt;Attachment id="EID4c16160f-9004-467d-bf49-72b7da258eff" type="LogFile"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;attachments&gt;
+  &lt;Attachment id=&quot;EID4c16160f-9004-467d-bf49-72b7da258eff&quot; type=&quot;LogFile&quot;&gt;
     &lt;label&gt;Log file&lt;/label&gt;
     &lt;encoding&gt;UTF-8&lt;/encoding&gt;
     &lt;mimeType&gt;text/plain&lt;/mimeType&gt;
-    &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EID4c16160f-9004-467d-bf49-72b7da258eff"/&gt;
+    &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EID4c16160f-9004-467d-bf49-72b7da258eff&quot;/&gt;
   &lt;/Attachment&gt;
-  &lt;Attachment id="EIDd9f69337-4ae0-4df2-a058-46b71e15135c" type="StatisticalReport"&gt;
+  &lt;Attachment id=&quot;EIDd9f69337-4ae0-4df2-a058-46b71e15135c&quot; type=&quot;StatisticalReport&quot;&gt;
     &lt;label&gt;Metadata record statistics&lt;/label&gt;
     &lt;encoding&gt;UTF-8&lt;/encoding&gt;
     &lt;mimeType&gt;application/xml&lt;/mimeType&gt;
-    &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EIDd9f69337-4ae0-4df2-a058-46b71e15135c"/&gt;
+    &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EIDd9f69337-4ae0-4df2-a058-46b71e15135c&quot;/&gt;
   &lt;/Attachment&gt;
-  &lt;Attachment id="EID0fed0d42-39a3-4692-8e38-e78e2f87507a" type="Query"&gt;
+  &lt;Attachment id=&quot;EID0fed0d42-39a3-4692-8e38-e78e2f87507a&quot; type=&quot;Query&quot;&gt;
     &lt;label&gt;XQuery executed against the dataset&lt;/label&gt;
     &lt;encoding&gt;UTF-8&lt;/encoding&gt;
     &lt;mimeType&gt;text/plain&lt;/mimeType&gt;
-    &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EID0fed0d42-39a3-4692-8e38-e78e2f87507a"/&gt;
+    &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDfa95b457-0d69-458f-98f3-6eae9b7f388d/Attachments/EID0fed0d42-39a3-4692-8e38-e78e2f87507a&quot;/&gt;
   &lt;/Attachment&gt;
 &lt;/attachments&gt;</code></pre>
 </div>
@@ -2272,7 +2323,7 @@ and the links to them are included in the <code>etf:TestTaskResult</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_schematron">3.15. Schematron</h3>
+<h3 id="_schematron">3.16. Schematron</h3>
 <div class="paragraph">
 <p>The
 <a href="https://github.com/interactive-instruments/etf-ets-repository/tree/master/utils">etf-ets-repository</a>
@@ -2545,7 +2596,7 @@ a web feature service.</p>
 <div class="paragraph">
 <p>Properties are used to parameterize an Executable Test Suite ('test project' in SoapUI terminology) as well as to associate it with other resources of ETF like Tags, Test Object Types etc. The standard properties are described in the following table. All properties are properties of the test project.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Description of standard properties on a SoapUI test project for ETF</caption>
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3295,11 +3346,11 @@ may be useful.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment type="Message" id="EID6afae437-88f2-4a9d-970a-8255d3872588"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment type=&quot;Message&quot; id=&quot;EID6afae437-88f2-4a9d-970a-8255d3872588&quot;&gt;
           &lt;label&gt;Message.2&lt;/label&gt;
           &lt;encoding&gt;UTF-8&lt;/encoding&gt;
           &lt;mimeType&gt;text/plain&lt;/mimeType&gt;
-          &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDb8f61761-4b25-47b5-8851-038615231f54/Attachments/EID6afae437-88f2-4a9d-970a-8255d3872588"/&gt;
+          &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDb8f61761-4b25-47b5-8851-038615231f54/Attachments/EID6afae437-88f2-4a9d-970a-8255d3872588&quot;/&gt;
 &lt;/Attachment&gt;</code></pre>
 </div>
 </div>
@@ -3314,7 +3365,7 @@ attachment of type 'GetParameter'.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment type="GetParameter" id="EID9294c44b-5650-48b3-a25c-27dfe6b35c0c"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment type=&quot;GetParameter&quot; id=&quot;EID9294c44b-5650-48b3-a25c-27dfe6b35c0c&quot;&gt;
           &lt;label&gt;Request Parameter&lt;/label&gt;
           &lt;encoding&gt;UTF-8&lt;/encoding&gt;
           &lt;mimeType&gt;text/plain&lt;/mimeType&gt;
@@ -3332,11 +3383,11 @@ attachment of type 'GetParameter'.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment type="PostData" id="EID64f3f170-3833-4308-9c8c-d881641ccc75"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment type=&quot;PostData&quot; id=&quot;EID64f3f170-3833-4308-9c8c-d881641ccc75&quot;&gt;
   &lt;label&gt;Request Parameter&lt;/label&gt;
   &lt;encoding&gt;UTF-8&lt;/encoding&gt;
   &lt;mimeType&gt;text/xml&lt;/mimeType&gt;
-  &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EID929e32b2-286f-46af-a5cf-de557c36d146/Attachments/EID64f3f170-3833-4308-9c8c-d881641ccc75"/&gt;
+  &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EID929e32b2-286f-46af-a5cf-de557c36d146/Attachments/EID64f3f170-3833-4308-9c8c-d881641ccc75&quot;/&gt;
 &lt;/Attachment&gt;</code></pre>
 </div>
 </div>
@@ -3350,11 +3401,11 @@ attachment of type 'GetParameter'.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment type="ServiceResponse" id="EID3d6d11e3-8d86-4880-b095-a851af095dec"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment type=&quot;ServiceResponse&quot; id=&quot;EID3d6d11e3-8d86-4880-b095-a851af095dec&quot;&gt;
         &lt;label&gt;Service Response&lt;/label&gt;
         &lt;encoding&gt;UTF-8&lt;/encoding&gt;
         &lt;mimeType&gt;application/gzip&lt;/mimeType&gt;
-&lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDb8f61761-4b25-47b5-8851-038615231f54/Attachments/EID3d6d11e3-8d86-4880-b095-a851af095dec"/&gt;</code></pre>
+&lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDb8f61761-4b25-47b5-8851-038615231f54/Attachments/EID3d6d11e3-8d86-4880-b095-a851af095dec&quot;/&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -3370,7 +3421,7 @@ object, which is constructed like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="Groovy">import de.interactive_instruments.etf.suim.*
+<pre class="pygments highlight"><code data-lang="Groovy"><span></span>import de.interactive_instruments.etf.suim.*
 Assert a = new Assert(messageExchange, context, log, Assert.INSPIRE_DS_NS)</code></pre>
 </div>
 </div>
@@ -3419,102 +3470,102 @@ The error texts should be self-describing for the errors and their occurrences.<
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;TranslationTemplateBundle xmlns="http://www.interactive-instruments.de/etf/2.0" id="EIDxxxxxx"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;TranslationTemplateBundle xmlns=&quot;http://www.interactive-instruments.de/etf/2.0&quot; id=&quot;EIDxxxxxx&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd&quot;&gt;
     &lt;translationTemplateCollections&gt;
-        &lt;LangTranslationTemplateCollection name="TR.noDataReturned"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.noDataReturned&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.noDataReturned"&gt;Expected a response but the service did not return any data. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.noDataReturned&quot;&gt;Expected a response but the service did not return any data. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.xmlExpected"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.xmlExpected&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.xmlExpected"&gt;Expected a XML response but the service returned unparseable data. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.xmlExpected&quot;&gt;Expected a XML response but the service returned unparseable data. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.unexpectedHtml"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.unexpectedHtml&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.unexpectedHtml"&gt;Expected a XML response but the service returned a HTML page. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication and returned an authentication page, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.unexpectedHtml&quot;&gt;Expected a XML response but the service returned a HTML page. Verify that the used endpoint URL is correct and accessible from outside your organization. If the service requires authentication and returned an authentication page, then check that the correct credentials are used by the validator or verify that upstream firewalls/proxy servers do not prevent access.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.missingElement"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.missingElement&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.missingElement"&gt;The expected element '{element}' was not found in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.missingElement&quot;&gt;The expected element &#39;{element}&#39; was not found in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.elementNotExpected"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.elementNotExpected&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.elementNotExpected"&gt;'{element}' was NOT expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.elementNotExpected&quot;&gt;&#39;{element}&#39; was NOT expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.elementsNotExpected"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.elementsNotExpected&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.elementsNotExpected"&gt;'{elements}' were not expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.elementsNotExpected&quot;&gt;&#39;{elements}&#39; were not expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.invalidValue"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.invalidValue&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.invalidValue"&gt;Expected the value '{value}' instead of '{acutal}' in {name}. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.invalidValue&quot;&gt;Expected the value &#39;{value}&#39; instead of &#39;{acutal}&#39; in {name}. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.emptyValue"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.emptyValue&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.emptyValue"&gt;Expected a non-empty text value for '{element}'. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.emptyValue&quot;&gt;Expected a non-empty text value for &#39;{element}&#39;. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.elementWithValueNotExpected"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.elementWithValueNotExpected&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.elementWithValueNotExpected"&gt;An element '{name}' with the value '{value}' was NOT expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.elementWithValueNotExpected&quot;&gt;An element &#39;{name}&#39; with the value &#39;{value}&#39; was NOT expected in the response. XPath: {xpath}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.unexpectedException"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.unexpectedException&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.unexpectedException"&gt;The service returned an unexpected exception: '{text}'. Check the request parameters, which are partially determined from the Capabilities, previous requests or other metadata. Ensure that the service supports the data and functionalities published in the Capabilties and ensure that referenced data exist.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.unexpectedException&quot;&gt;The service returned an unexpected exception: &#39;{text}&#39;. Check the request parameters, which are partially determined from the Capabilities, previous requests or other metadata. Ensure that the service supports the data and functionalities published in the Capabilties and ensure that referenced data exist.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.preCondition.testStep.xmlExpected"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.preCondition.testStep.xmlExpected&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.preCondition.testStep.xmlExpected"&gt;The required response of the test step '{testStepName}' can not be used for this test, due to not well-formed XML has been returned.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.preCondition.testStep.xmlExpected&quot;&gt;The required response of the test step &#39;{testStepName}&#39; can not be used for this test, due to not well-formed XML has been returned.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.preCondition.testStep.unexpectedException"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.preCondition.testStep.unexpectedException&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.preCondition.testStep.unexpectedException"&gt;The required response of the test step '{testStepName}' can not be used for this test, due to an exception report has been returned.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.preCondition.testStep.unexpectedException&quot;&gt;The required response of the test step &#39;{testStepName}&#39; can not be used for this test, due to an exception report has been returned.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.preCondition.testStep.noDataReturned"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.preCondition.testStep.noDataReturned&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.preCondition.testStep.noDataReturned"&gt;The required response of the test step '{testStepName}' can not be used for this test, due to no data has been returned.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.preCondition.testStep.noDataReturned&quot;&gt;The required response of the test step &#39;{testStepName}&#39; can not be used for this test, due to no data has been returned.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.preCondition.testStep.missingElement"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.preCondition.testStep.missingElement&quot;&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.preCondition.testStep.missingElement"&gt;The test compares data from this response with data from another test step, however the element '{element}' could not be found or has an empty value in test step '{testStepName}'.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.preCondition.testStep.missingElement&quot;&gt;The test compares data from this response with data from another test step, however the element &#39;{element}&#39; could not be found or has an empty value in test step &#39;{testStepName}&#39;.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.missingSchemaLocation"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.missingSchemaLocation&quot;&gt;
             &lt;!-- Used by the schema validation assertion --&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.missingSchemaLocation"&gt;The schema attribute 'xsi:schemaLocation' was not found in the XML root element of the response. The response cannot be validated.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.missingSchemaLocation&quot;&gt;The schema attribute &#39;xsi:schemaLocation&#39; was not found in the XML root element of the response. The response cannot be validated.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.initializationAndBasicChecksFailed"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.initializationAndBasicChecksFailed&quot;&gt;
             &lt;!-- Thrown when a WFS is auto configured and the library initialization fails --&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.initializationAndBasicChecksFailed"&gt;The testing of basic functionalities of the service failed and therefore all other test cases are skipped. Check all failed Test Cases in the 'Initialization and basic checks' module and ensure that the endpoints for GetCapabilities, GetFeature and DescribeFeatureType operations are accesible from outside your organization.&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.initializationAndBasicChecksFailed&quot;&gt;The testing of basic functionalities of the service failed and therefore all other test cases are skipped. Check all failed Test Cases in the &#39;Initialization and basic checks&#39; module and ensure that the endpoints for GetCapabilities, GetFeature and DescribeFeatureType operations are accesible from outside your organization.&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.fallbackInfo"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.fallbackInfo&quot;&gt;
             &lt;!-- TR.fallbackInfo is used when messages are thrown and no translation name is provided --&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.fallbackInfo"&gt;{INFO}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.fallbackInfo&quot;&gt;{INFO}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
-        &lt;LangTranslationTemplateCollection name="TR.internalError"&gt;
+        &lt;LangTranslationTemplateCollection name=&quot;TR.internalError&quot;&gt;
             &lt;!-- Thrown when an internal error occurs in the Assertion library --&gt;
             &lt;translationTemplates&gt;
-                &lt;TranslationTemplate language="en" name="TR.internalError"&gt;Internal error in the Executable Test Suite. Please contact a system administrator. Error information: {text}&lt;/TranslationTemplate&gt;
+                &lt;TranslationTemplate language=&quot;en&quot; name=&quot;TR.internalError&quot;&gt;Internal error in the Executable Test Suite. Please contact a system administrator. Error information: {text}&lt;/TranslationTemplate&gt;
             &lt;/translationTemplates&gt;
         &lt;/LangTranslationTemplateCollection&gt;
     &lt;/translationTemplateCollections&gt;
@@ -3673,7 +3724,7 @@ This <a href="http://opengeospatial.github.io/teamengine/testng-essentials.html"
 <div class="paragraph">
 <p>TEAM Engine test suites that are currently registered in ETF as Executable Test Suite are listed in the following table:</p>
 </div>
-<table id="te-test-suites" class="tableblock frame-all grid-all spread">
+<table id="te-test-suites" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. TEAM Engine test suites registered in ETF</caption>
 <colgroup>
 <col style="width: 12.5%;">
@@ -3706,7 +3757,7 @@ This <a href="http://opengeospatial.github.io/teamengine/testng-essentials.html"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;etf:Tag id="EID268af871-5cf0-443e-834a-ce40bed6c0e3"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;etf:Tag id=&quot;EID268af871-5cf0-443e-834a-ce40bed6c0e3&quot;&gt;
   &lt;label&gt;OGC Test Suites (remote execution)&lt;/label&gt;
   &lt;description&gt;Executable Test Suites that are executed on a remote OGC TEAM Engine instance&lt;/description&gt;
   &lt;priority&gt;1000&lt;/priority&gt;
@@ -3857,11 +3908,11 @@ the type <code>JunitXml</code>:</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment id="EID02e4736f-d1a5-482a-966e-a94717f7f1d9" type="JunitXml"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment id=&quot;EID02e4736f-d1a5-482a-966e-a94717f7f1d9&quot; type=&quot;JunitXml&quot;&gt;
   &lt;label&gt;TEAM Engine result&lt;/label&gt;
   &lt;encoding&gt;UTF-8&lt;/encoding&gt;
   &lt;mimeType&gt;text/xml&lt;/mimeType&gt;
-  &lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EID674c8b95-d447-4b91-aaae-21169657828f/Attachments/EID02e4736f-d1a5-482a-966e-a94717f7f1d9"/&gt;
+  &lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EID674c8b95-d447-4b91-aaae-21169657828f/Attachments/EID02e4736f-d1a5-482a-966e-a94717f7f1d9&quot;/&gt;
 &lt;/Attachment&gt;</code></pre>
 </div>
 </div>
@@ -3879,11 +3930,11 @@ generating a report, the error message is recorded as attachment of type <code>i
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="XML">&lt;Attachment id="EID0783aa0d-8cd4-476a-86b5-c5432a7c1b46" type="internalError"&gt;
+<pre class="pygments highlight"><code data-lang="XML"><span></span>&lt;Attachment id=&quot;EID0783aa0d-8cd4-476a-86b5-c5432a7c1b46&quot; type=&quot;internalError&quot;&gt;
 &lt;label&gt;Internal error&lt;/label&gt;
 &lt;encoding&gt;UTF-8&lt;/encoding&gt;
 &lt;mimeType&gt;text/html&lt;/mimeType&gt;
-&lt;referencedData href="http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDc631dc5f-2bf8-4169-8b36-ccdc85da710c/Attachments/EID0783aa0d-8cd4-476a-86b5-c5432a7c1b46"/&gt;
+&lt;referencedData href=&quot;http://demo-inspire-next.etf-validator.net/etf-webapp/v2/TestTaskResults/EIDc631dc5f-2bf8-4169-8b36-ccdc85da710c/Attachments/EID0783aa0d-8cd4-476a-86b5-c5432a7c1b46&quot;/&gt;
 &lt;/Attachment&gt;
 &lt;/attachments&gt;
 &lt;/Attachment&gt;</code></pre>
@@ -3897,7 +3948,7 @@ generating a report, the error message is recorded as attachment of type <code>i
 <div class="sect1">
 <h2 id="_glossary">Glossary</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 6. Glossary of key terms and definitions in ETF</caption>
 <colgroup>
 <col style="width: 25%;">
@@ -4036,8 +4087,9 @@ generating a report, the error message is recorded as attachment of type <code>i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-10 16:50:18 CEST
+Last updated 2020-05-06 16:43:15 +0200
 </div>
 </div>
+<link rel="stylesheet" href="../stylesheets/pygments-autumn.css">
 </body>
 </html>

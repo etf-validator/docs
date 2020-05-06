@@ -565,6 +565,17 @@ Once the listener is implemented, the whole generation of the
 `etf:TestTaskResult` document will be done by the ETF test driver.
 ======================================
 
+[[the-prepare-chunk-document]]
+=== The prepare-chunk document
+A prepare-chunk.xq document is optional but can be used to preprocess testdata.
+
+Example usage: Prepare a spatial index and extract all objects with erroneous geometry before executing the tests.
+[NOTE]
+======================================
+* For every given chunk, prepare-chunk.xq will be executed.
+* The name of the chunk is passed to the document through the variable `$dbName`.
+======================================
+
 [[spatial-tests]]
 === Testing spatial aspects
 
