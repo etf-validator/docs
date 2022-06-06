@@ -38,7 +38,7 @@ IMPORTANT: The `name` attribute values of an `etf:LangTranslationTemplateCollect
 ----
 <TranslationTemplateBundle xmlns="http://www.interactive-instruments.de/etf/2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/model/resultSet.xsd"
+    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"
    id="EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8">
     <translationTemplateCollections>
       <LangTranslationTemplateCollection name="TR.invalidSchema">
@@ -68,7 +68,7 @@ Template Bundle could look like this (notice the parent element):
 ----
 <TranslationTemplateBundle xmlns="http://www.interactive-instruments.de/etf/2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/model/resultSet.xsd"
+    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 https://resources.etf-validator.net/schema/v2/val/ignoreRef.xsd"
    id="EID7766b3e6-b7ac-452e-b3c3-c793a591e86c">
     <parent ref="EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8"/>
     <translationTemplateCollections>

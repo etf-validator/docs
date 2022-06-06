@@ -24,7 +24,7 @@ To address the different challenges properly, ETF supports different tools ("tes
 * link:http://basex.org/[BaseX], an XML database, for testing sets of XML documents - including very large ones
 * link:http://opengeospatial.github.io/teamengine[TEAM Engine], the tool used by the OGC CITE tests, to support the modern CITE tests developed using TestNG
 
-The BaseX extension module link:https://github.com/interactive-instruments/etf-gmlgeox[GmlGeoX] extends XQuery to enable testing spatial aspects of GML features (geometry validation, spatial indexing, spatial predicates).
+The BaseX extension module link:https://github.com/etf-validator/etf-gmlgeox[GmlGeoX] extends XQuery to enable testing spatial aspects of GML features (geometry validation, spatial indexing, spatial predicates).
 
 Due to the different characteristics of the test engines, the development of an Executable Test Suite is very different for each test engine.
 
