@@ -1,0 +1,28 @@
+== Installation on Linux
+
+=== Prerequisites on Linux
+* Machine with at least 4 GB Ram (8GB are recommended, 16 GB and more if a large set of XML files are tested)
+* link:https://www.oracle.com/es/java/technologies/javase/jdk11-archive-downloads.html[Oracle Java 11 is installed]
+* link:https://www.eclipse.org/jetty/download.php[Jetty 9 installed]
+
+=== Install ETF web application on Linux
+Download the link:https://github.com/etf-validator/etf-webapp/releases[latest version of ETF-Webapp.war]
+
+Rename the etf-webapp-2.x.x.war file to etf-webapp.war . Otherwise, the version must be specified in the URL after the deployment.
+
+Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a JETTY_BASE, then copy the etf-webapp.war file to **JETTY_BASE/webapps**.
+
+NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
+
+Initiate Jetty 9 using **java -jar start.jar** in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn't work you can use **JETTY_HOME/bin/jetty.sh start** or **JETTY_HOME/bin/jetty.sh run**.
+
+NOTE: To stop the process in case of using *java -jar start.jar* or *JETTY_HOME/bin/jetty.sh run*, use *CTRL+C*. In case of using *JETTY_HOME/bin/jetty.sh start*, use *JETTY_HOME/bin/jetty.sh stop*.
+
+Download <<ets-installation>> and extract archives into the **~/.etf/projects** directory. The web application will automatically load the Executable Test Suites after a few seconds.
+
+The web application can be accessed via link:http://localhost:8080/etf-webapp[http://localhost:8080/etf-webapp].
+
+If ETF is accessed not only from one local machine, the **etf.webapp.base.url** property must be changed in the <<etf-configuration-dir>> to your server address (e.g. http://etf-server:8080/etf-webapp).
+
+Check the <<etf-log-file>> file for errors.
+
