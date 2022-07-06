@@ -121,12 +121,6 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # Default: simplified
 # etf.workflows = simplified
 
-# Help to improve our application by automatically reporting internal errors
-# (last user action, error message and stacktrace) to interactive instruments through
-# the third party service platform opbeat (see https://opbeat.com/about for more information).
-# Default: false
-# etf.errors.autoreport = false
-
 
 ##################################################################################
 ## Contact, legal notice, privacy statement
@@ -154,9 +148,6 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # Privacy statement
 # etf.meta.privacystatement.text = Privacy statement ...
 
-# The link to the help page can be overridden with this property.
-# Default: http://docs.etf-validator.net
-# etf.help.page = http://docs.etf-validator.net
 
 #########################################
 ## Directory properties
@@ -179,10 +170,21 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # etf.reportstyles.dir = reportstyles
 
 # Directory which contains the test drivers
-# Default: td
-# etf.testdrivers.dir = td
+# Default: td/lib
+# etf.testdrivers.dir = td/lib
 
-# Directory that the application uses for text data tests
+# Directory for storage that is created by test drivers during
+# the test run
+# Default: td/data
+# etf.testdrivers.storage.dir = td/data
+
+# Directory that the application uses to automatically create file
+# based Test Objects. This configuration option is only useful
+# when the configured workflow is "organisation-internal"
+# etf.mounted.testdata.dir = /shared_testdata
+
+# Directory that the application uses for storing data for
+# file based tests
 # Default: testdata
 # etf.testdata.dir = testdata
 
@@ -246,7 +248,6 @@ etf
 |  `--INSPIRE
 |--td
 |  |--lib 
-|  |  |--etf-bsxtd-3.0.0-SNAPSHOT.jar
 |  |  |--etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar
 |  |  |--etf-suitd-legacy-2.1.0-SNAPSHOT.jar
 |  |  `--etf-tetd-1.1.0-SNAPSHOT.jar
@@ -274,7 +275,7 @@ anchor:etf-log-file[ETF log file]
 . The ETF log file can be found in the ETF data directory below the *logs* subfolder.
 . Executable Test Suites must be installed in the *projects* folder.
 They are automatically (re-)loaded after a short time.
-. Testdrivers are loaded from the *td/lib* directory on ETF startup. While the other subfolder of the *td* folder, *data*, is used for files that are downloaded or created during a Test Run
+. Testdrivers are loaded from the *td/lib* directory on ETF startup. While the other subfolder of the *td* folder, *data*, is used for files that are created by test drivers during a Test Run
 . The *testdata* directory contains uploaded files. XML files are
 indexed in databases in *db/data/etf-tdb-<UUID>* directories during a test run.
 
@@ -283,6 +284,6 @@ indexed in databases in *db/data/etf-tdb-<UUID>* directories during a test run.
 If you want to create backups of the ETF data directory, back up:
 
 * config/etf-config.properties
-* ds/obj
+* db/obj
 * logs/etf.log
 ====

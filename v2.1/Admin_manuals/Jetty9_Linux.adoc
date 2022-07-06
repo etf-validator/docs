@@ -2,46 +2,39 @@
 
 === Prerequisites on Linux
 * Machine with at least 4 GB Ram (8GB are recommended, 16 GB and more if a large set of XML files are tested)
-* link:https://www.oracle.com/es/java/technologies/javase/jdk11-archive-downloads.html[Oracle Java 11 is installed]
+* link:https://jdk.java.net/archive/[OpenJDK 11 is installed]
 * link:https://www.eclipse.org/jetty/download.php[Jetty 9 installed]
 
 === Install ETF web application on Linux
-Download the link:https://github.com/etf-validator/etf-webapp/releases[latest version of ETF-Webapp.war]
 
-The process for the deployment has been as follows.
+Download these resources provided in the ETF webpage:
 
-Starting from the resources provided in the ETF webpage:
+* link:https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1[etf-webapp.war] 
+* link:https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1[etf-suitd-legacy-2.1.0-SNAPSHOT.jar]
+* link:https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1[etf-tetd-1.1.0-SNAPSHOT.jar]
+* link:https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1[etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar]
 
-    etf-webapp.war from https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1
-    etf-suitd-legacy-2.1.0-SNAPSHOT.jar from https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1
-    etf-tetd-1.1.0-SNAPSHOT.jar from https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1
-    etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar from https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1
+Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added. 
 
-We have created a functional .war file to be deployed, considering the indications provided in the past (and also solved some other issues).
+Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:
 
-    Download .war file
-    Create testdrivers folder (as it was pointed in the previous deployment)
-    Place the following .jar files in the testdrivers folder:
-        etf-suitd-legacy-2.1.0-SNAPSHOT.jar
-        etf-tetd-1.1.0-SNAPSHOT.jar
-        etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar
-    Then some issues have arisen in the deployment and we have needed to manually add the following libraries to etf-webapp.war/WEB-INF/lib/ in order to make the deployment work properly:
-        bcprov-jdk18on-171.jar
-        flex-messaging-core-4.7.3.jar
-        proxy-vole-20131209.jar
-        wsdl4j-1.6.2.jar
-        xmlunit-1.6.jar
-
-
-
-
-Rename the etf-webapp-2.x.x.war file to etf-webapp.war . Otherwise, the version must be specified in the URL after the deployment.
+* bcprov-jdk18on-171.jar
+* flex-messaging-core-4.7.3.jar
+* proxy-vole-20131209.jar
+* wsdl4j-1.6.2.jar
+* xmlunit-1.6.jar
 
 Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a JETTY_BASE, then copy the etf-webapp.war file to **JETTY_BASE/webapps**.
 
 NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
 
 Initiate Jetty 9 using **java -jar start.jar** in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn't work you can use **JETTY_HOME/bin/jetty.sh start** or **JETTY_HOME/bin/jetty.sh run**.
+
+.ETF starts to deploy on Linux
+image::../images/etf-start-linux.png[ETF start to deploy]
+
+.ETF already deployed on Linux
+image::../images/etf-started-linux.png[ETF already deployed]
 
 NOTE: To stop the process in case of using *java -jar start.jar* or *JETTY_HOME/bin/jetty.sh run*, use *CTRL+C*. In case of using *JETTY_HOME/bin/jetty.sh start*, use *JETTY_HOME/bin/jetty.sh stop*.
 

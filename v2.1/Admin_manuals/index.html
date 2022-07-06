@@ -79,11 +79,11 @@ Testing framework for spatial data and services</span></p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">approved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not approved</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-09-28</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-07-06</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
@@ -91,7 +91,7 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Target audience</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Administrators who want to set up a deployment of the ETF validator. Knowledge about Apache Tomcat 8 are required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrators who want to set up a deployment of the ETF validator. Knowledge about Jetty 9 is recommended.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
@@ -99,7 +99,7 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Identifier</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.etf-validator.net/v2.0/Admin_manuals/index.html" class="bare">https://docs.etf-validator.net/v2.0/Admin_manuals/index.html</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.etf-validator.net/v2.1/Admin_manuals/index.html" class="bare">https://docs.etf-validator.net/v2.1/Admin_manuals/index.html</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Language</strong></p></td>
@@ -146,6 +146,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual installation instructions for GmlGeoX removed as it is now installed by the BSX test driver</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-07-06</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JRC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updated to the vesion 2.1 and Jetty9 instructions added</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -168,6 +173,9 @@ Testing framework for spatial data and services</span></p></td>
 <div class="paragraph">
 <p><a href="http://docs.etf-validator.net/">More documentation about ETF&#8230;&#8203;</a></p>
 </div>
+<div class="paragraph">
+<p>These admin instructions are related to ETF 2.1 version</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -181,7 +189,7 @@ Testing framework for spatial data and services</span></p></td>
 <p>Machine with at least 4 GB Ram (8GB are recommended, 16 GB and more if a large set of XML files are tested)</p>
 </li>
 <li>
-<p><a href="https://www.oracle.com/es/java/technologies/javase/jdk11-archive-downloads.html">Oracle Java 11 is installed</a></p>
+<p><a href="https://jdk.java.net/archive/">OpenJDK 11 is installed</a></p>
 </li>
 <li>
 <p><a href="https://www.eclipse.org/jetty/download.php">Jetty 9 installed</a></p>
@@ -192,10 +200,48 @@ Testing framework for spatial data and services</span></p></td>
 <div class="sect2">
 <h3 id="_install_etf_web_application_on_windows">1.2. Install ETF web application on Windows</h3>
 <div class="paragraph">
-<p>Download the <a href="https://github.com/etf-validator/etf-webapp/releases">latest version of ETF-Webapp.war</a></p>
+<p>Download these resources provided in the ETF webpage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1">etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1">etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1">etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Rename the etf-webapp-2.x.x.war file to etf-webapp.war . Otherwise, the version must be specified in the URL after the deployment.</p>
+<p>Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added.</p>
+</div>
+<div class="paragraph">
+<p>Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>bcprov-jdk18on-171.jar</p>
+</li>
+<li>
+<p>flex-messaging-core-4.7.3.jar</p>
+</li>
+<li>
+<p>proxy-vole-20131209.jar</p>
+</li>
+<li>
+<p>wsdl4j-1.6.2.jar</p>
+</li>
+<li>
+<p>xmlunit-1.6.jar</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
@@ -214,6 +260,18 @@ The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case
 </div>
 <div class="paragraph">
 <p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/etf-start-windows.png" alt="ETF starts to deploy">
+</div>
+<div class="title">Figure 1. ETF starts to deploy on Windows</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/etf-started-windows.png" alt="ETF already deployed">
+</div>
+<div class="title">Figure 2. ETF already deployed on Windows</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -253,7 +311,7 @@ To stop the process use <strong>CTRL+C</strong>.
 <p>Machine with at least 4 GB Ram (8GB are recommended, 16 GB and more if a large set of XML files are tested)</p>
 </li>
 <li>
-<p><a href="https://www.oracle.com/es/java/technologies/javase/jdk11-archive-downloads.html">Oracle Java 11 is installed</a></p>
+<p><a href="https://jdk.java.net/archive/">OpenJDK 11 is installed</a></p>
 </li>
 <li>
 <p><a href="https://www.eclipse.org/jetty/download.php">Jetty 9 installed</a></p>
@@ -264,10 +322,48 @@ To stop the process use <strong>CTRL+C</strong>.
 <div class="sect2">
 <h3 id="_install_etf_web_application_on_linux">2.2. Install ETF web application on Linux</h3>
 <div class="paragraph">
-<p>Download the <a href="https://github.com/etf-validator/etf-webapp/releases">latest version of ETF-Webapp.war</a></p>
+<p>Download these resources provided in the ETF webpage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1">etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1">etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1">etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Rename the etf-webapp-2.x.x.war file to etf-webapp.war . Otherwise, the version must be specified in the URL after the deployment.</p>
+<p>Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added.</p>
+</div>
+<div class="paragraph">
+<p>Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>bcprov-jdk18on-171.jar</p>
+</li>
+<li>
+<p>flex-messaging-core-4.7.3.jar</p>
+</li>
+<li>
+<p>proxy-vole-20131209.jar</p>
+</li>
+<li>
+<p>wsdl4j-1.6.2.jar</p>
+</li>
+<li>
+<p>xmlunit-1.6.jar</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
@@ -286,6 +382,18 @@ The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case
 </div>
 <div class="paragraph">
 <p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn&#8217;t work you can use <strong>JETTY_HOME/bin/jetty.sh start</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/etf-start-linux.png" alt="ETF start to deploy">
+</div>
+<div class="title">Figure 3. ETF starts to deploy on Linux</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/etf-started-linux.png" alt="ETF already deployed">
+</div>
+<div class="title">Figure 4. ETF already deployed on Linux</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -467,12 +575,6 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # Default: simplified
 # etf.workflows = simplified
 
-# Help to improve our application by automatically reporting internal errors
-# (last user action, error message and stacktrace) to interactive instruments through
-# the third party service platform opbeat (see https://opbeat.com/about for more information).
-# Default: false
-# etf.errors.autoreport = false
-
 
 ##################################################################################
 ## Contact, legal notice, privacy statement
@@ -500,9 +602,6 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # Privacy statement
 # etf.meta.privacystatement.text = Privacy statement ...
 
-# The link to the help page can be overridden with this property.
-# Default: http://docs.etf-validator.net
-# etf.help.page = http://docs.etf-validator.net
 
 #########################################
 ## Directory properties
@@ -525,10 +624,21 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 # etf.reportstyles.dir = reportstyles
 
 # Directory which contains the test drivers
-# Default: td
-# etf.testdrivers.dir = td
+# Default: td/lib
+# etf.testdrivers.dir = td/lib
 
-# Directory that the application uses for text data tests
+# Directory for storage that is created by test drivers during
+# the test run
+# Default: td/data
+# etf.testdrivers.storage.dir = td/data
+
+# Directory that the application uses to automatically create file
+# based Test Objects. This configuration option is only useful
+# when the configured workflow is "organisation-internal"
+# etf.mounted.testdata.dir = /shared_testdata
+
+# Directory that the application uses for storing data for
+# file based tests
 # Default: testdata
 # etf.testdata.dir = testdata
 
@@ -570,7 +680,7 @@ on the host.
 <div class="content">
 <img src="../images/etf-data-dir.png" alt="ETF data directory">
 </div>
-<div class="title">Figure 1. ETF data directory</div>
+<div class="title">Figure 5. ETF data directory</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -603,7 +713,7 @@ The <strong>db/repo</strong> folder contains extensions for the database.</p>
 They are automatically (re-)loaded after a short time.</p>
 </li>
 <li>
-<p>Testdrivers are loaded from the <strong>td/lib</strong> directory on ETF startup. While the other subfolder of the <strong>td</strong> folder, <strong>data</strong>, is used for files that are downloaded or created during a Test Run</p>
+<p>Testdrivers are loaded from the <strong>td/lib</strong> directory on ETF startup. While the other subfolder of the <strong>td</strong> folder, <strong>data</strong>, is used for files that are created by test drivers during a Test Run</p>
 </li>
 <li>
 <p>The <strong>testdata</strong> directory contains uploaded files. XML files are
@@ -627,7 +737,7 @@ indexed in databases in <strong>db/data/etf-tdb-&lt;UUID&gt;</strong> directorie
 <p>config/etf-config.properties</p>
 </li>
 <li>
-<p>ds/obj</p>
+<p>db/obj</p>
 </li>
 <li>
 <p>logs/etf.log</p>
@@ -716,7 +826,7 @@ The GmlGeoX module will be automatically reinstalled.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-05 14:39:47 +0200
+Last updated 2022-07-06 15:00:56 +0200
 </div>
 </div>
 </body>

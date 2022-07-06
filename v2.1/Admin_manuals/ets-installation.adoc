@@ -17,4 +17,4 @@ NOTE: The Executable Test Suites in the listed repositories only work with ETF v
 
 List of official supported Executable Test Suite repositories:
 
-* INSPIRE ETS link:https://github.com/inspire-eu-validation/ets-repository/[repository] - link:https://github.com/inspire-eu-validation/ets-repository/archive/master.zip[Download ZIP]
+* INSPIRE ETS link:https://github.com/inspire-eu-validation/ets-repository/tree/next[repository] - link:https://github.com/inspire-eu-validation/ets-repository/archive/refs/heads/next.zip[Download ZIP]
