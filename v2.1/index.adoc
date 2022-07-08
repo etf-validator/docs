@@ -34,8 +34,8 @@ include::General/about.adoc[]
 
 == Administrator manuals
 * link:https://github.com/interactive-instruments/etf-webapp-docker#setup-etf-with-docker-compose[Deployment using Docker]
-* link:Admin_manuals/index.html#_installation_on_windows[Tomcat 8 deployment on Windows 7]
-* link:Admin_manuals/index.html#_installation_on_linux[Tomcat 8 deployment on Linux]
+* link:Admin_manuals/index.html#_installation_on_windows[Jetty 9 deployment on Windows]
+* link:Admin_manuals/index.html#_installation_on_linux[Jetty 9 deployment on Linux]
 * link:Admin_manuals/index.html#_etf_configuration[Configuration]
 * link:Admin_manuals/index.html#ets-installation[Executable Test Suite installation]
 
