@@ -16,7 +16,7 @@ Download these resources provided in the ETF webpage:
 
 Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added. 
 
-Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:
+Download and include the following libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:
 
 * bcprov-jdk18on-171.jar
 * flex-messaging-core-4.7.3.jar
