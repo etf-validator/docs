@@ -22,7 +22,7 @@ include::../General/Logo.adoc[]
 :doc-warning-work-in-progress: false
 :doc-title: Web API v2.1
 :doc-status: not approved
-:doc-date: 2017-06-21
+:doc-date: 2022-08-19
 :doc-description: Quickstart manual for the 2nd version of the ETF Web API. For the complete documentation of the API, consult the Swagger documentation.
 :doc-audience: Developers planning to use the ETF Web API v2.1 to automate test runs with an ETF instance, for example in an automated test pipeline.
 :doc-id: https://docs.etf-validator.net/v2.1/Developer_manuals/WEB-API.html

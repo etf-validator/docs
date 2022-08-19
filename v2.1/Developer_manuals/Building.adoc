@@ -21,7 +21,7 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Building ETF
-:doc-status: approved
+:doc-status: not approved
 :doc-date: 2022-08-17
 :doc-description: This manual describes how to build the ETF validator. Knowledge about maven, maven repositories and build management tools are required.
 :doc-audience: Developers planning to build the ETF validator themselves
