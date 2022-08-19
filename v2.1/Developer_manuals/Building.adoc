@@ -22,7 +22,7 @@ include::../General/Logo.adoc[]
 :doc-warning-work-in-progress: false
 :doc-title: Building ETF
 :doc-status: approved
-:doc-date: 2017-06-21
+:doc-date: 2022-08-17
 :doc-description: This manual describes how to build the ETF validator. Knowledge about maven, maven repositories and build management tools are required.
 :doc-audience: Developers planning to build the ETF validator themselves
 :doc-id: https://docs.etf-validator.net/v2.0/Developer_manuals/Building.html
@@ -37,6 +37,7 @@ include::../General/Document-metadata.adoc[]
 | 2017-05-02 | Jon Herrmann | document created
 | 2017-06-21 | Clemens Portele | editorial updates
 | 2017-07-12 | Jon Herrmann | Test driver development section
+| 2022-08-17 | Guadaltel | Updated to v2.1
 |===
 
 <<<
@@ -49,15 +50,18 @@ include::../General/About-short.adoc[]
 
 == Prerequisites
 
-- link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Java SE Development Kit JDK 8 installed]
+- link:https://jdk.java.net/archive/[OpenJDK 11 is installed]
 - Ensure JAVA_HOME environment variable is set
 - link:https://git-scm.com/downloads[Git installed]
+- link:https://www.eclipse.org/jetty/download.php[Jetty 9 installed]
 
 == Accessing the source code
 
-The code base of the web application can be cloned from link:https://github.com/etf-validator/etf-webapp[GitHub].
+The already compiled .war archive in link:https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1[etf-webapp.war]
 
-NOTE: because the ETF version 2 is not finally released, the next branch must be used.
+However you can compile it youself. For this option, the code base of the web application can be cloned from link:https://github.com/etf-validator/etf-webapp[GitHub].
+
+NOTE: because the ETF version 2.1 is not finally released, the next branch must be used.
 
 [source,bash]
 ----
@@ -82,7 +86,7 @@ Make sure the version is suffixed with "-SNAPSHOT". If necessary, change the
 version in the version.properties file, for example to:
 
 ----
-version = 2.0.0-SNAPSHOT
+version = 2.1.0-SNAPSHOT
 ----
 ====
 
@@ -96,26 +100,88 @@ C:\etf-webapp> gradlew.bat build
 .On Linux execute
 [source,bash]
 ----
-$ ./gradlew build
+$ ./gradlew build install spotlessApply -x test
 ----
+== Including Test drivers to the web application
 
-== Running the web application
+The test drivers are not included by default in the etf-webapp. So, to be able to use them and have access to all the tests that ETF offer, they should be added before the run of the web application. To do so you can download them already built or bouild them yourselves. For the first option they can be download using these links:
 
-The web application can be started by executing the *jettyRun* task.
+
+
+To build them yourself, first they should be cloned from these links:
+
+- link:https://github.com/etf-validator/etf-bsxtd.git[etf-bsxtd] ETF test driver for running BaseX XQuery based test projects
+- link:https://github.com/etf-validator/etf-tetd.git[etf-tetd] ETF test driver for executing Test Suites on a remote OGC TEAM Engine instance
+- link:https://github.com/etf-validator/etf-suitd.git[etf-suitd] ETF test driver for running SoapUI based test projects
+
+Test drivers then should be built with the following commands:
+
+- For etf-bsxtd: 
 
 .On a Windows command line run
 [source,cmd]
 ----
-C:\etf-webapp> gradlew.bat jettyRunWar
+C:\etf-webapp> gradlew.bat build install
 ----
-
 .On Linux execute
 [source,bash]
 ----
-$ ./gradlew.sh jettyRunWar
+$ ./gradlew build install
 ----
 
-The web application can then be accessed at link:http://localhost:8080[http://localhost:8080].
+- For etf-suitd: 
+
+.On a Windows command line run
+[source,cmd]
+----
+C:\etf-webapp> gradlew.bat build install -x test
+----
+.On Linux execute
+[source,bash]
+----
+$ ./gradlew build install -x test
+----
+
+- For etf-tetd: 
+
+.On a Windows command line run
+[source,cmd]
+----
+C:\etf-webapp> gradlew.bat build install spotlessApply -x test
+----
+.On Linux execute
+[source,bash]
+----
+$ ./gradlew build install spotlessApply -x test
+----
+
+NOTE: Option "-x test" skips tests, while "spotlessApply" solves issues regarding code formatting.
+
+After you have the compiled .jar archives, in order to deploy the ETF, we have to start from etf-webapp and create a folder named "testdrivers" inside the war file where to place the previous compilated .jar files (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) in it.
+
+== Running the web application
+
+Copy the etf-webapp.war file to JETTY_HOME/webapps or if you have created a JETTY_BASE, then copy the etf-webapp.war file to JETTY_BASE/webapps.
+
+NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
+
+Initiate Jetty 9 using **java -jar start.jar** in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn't work you can use **JETTY_HOME/bin/jetty.sh start** or **JETTY_HOME/bin/jetty.sh run**.
+
+
+[NOTE]
+====
+If issues arise in the deployment, we probably need to manually add the following libraries to etf-webapp.war/WEB-INF/lib/ in order to make the deployment work properly:
+
+    - link:https://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk18on/1.71/bcprov-jdk18on-1.71.jar[bcprov-jdk18on-171.jar]
+    - link:https://repo1.maven.org/maven2/org/apache/flex/blazeds/flex-messaging-core/4.7.3/flex-messaging-core-4.7.3.jar[flex-messaging-core-4.7.3.jar]
+    - link:https://repo.b3p.nl/nexus/repository/public/com/btr/proxy-vole/20131209/proxy-vole-20131209.jar[proxy-vole-20131209.jar]
+    - link:https://repo1.maven.org/maven2/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar[wsdl4j-1.6.2.jar]
+    - link:https://repo1.maven.org/maven2/xmlunit/xmlunit/1.6/xmlunit-1.6.jar[xmlunit-1.6.jar]
+====
+
+The web application can then be accessed at link:http://localhost:8080[http://localhost:8080/etf-webapp].
+
+NOTE: To stop the process in case of using *java -jar start.jar* or *JETTY_HOME/bin/jetty.sh run*, use *CTRL+C*. In case of using *JETTY_HOME/bin/jetty.sh start*, use *JETTY_HOME/bin/jetty.sh stop*.
 
 == Building other ETF components
 The web application depends on several other ETF components:
@@ -123,14 +189,12 @@ The web application depends on several other ETF components:
 - link:https://github.com/etf-validator/etf-core[etf-core] ETF core library including API and domain model
 - link:https://github.com/etf-validator/etf-spi[etf-spi] ETF Service Provider Interface
 - link:https://github.com/etf-validator/etf-bsxds[etf-bsxds] ETF data storage based on the BaseX database
-- link:https://github.com/etf-validator/etf-suitd[etf-suitd] ETF SoapUI test driver
 - link:https://github.com/etf-validator/etf-sui-ae[etf-sui-ae] ETF test driver adapter and extensions for SoapUI
-- link:https://github.com/etf-validator/etf-sui-ae[etf-bsxtd] ETF BaseX test driver
 
 The source code of the components must be cloned using GIT
 (otherwise a 'repository not found' error occurs).
 
-NOTE: because the ETF version 2 is not finally released, the next branches must be used.
+NOTE: because the ETF version 2.1 is not finally released, the next branches must be used.
 
 Changed components can be installed into the local maven repository with the
 gradle *install* command and be used by the etf-webapp component afterwards.

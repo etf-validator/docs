@@ -5,10 +5,10 @@ and to inspect the test results. These task areas are reflected in the
 menu structure.
 
 [.thumb]
-image:https://cloud.githubusercontent.com/assets/13570741/24769663/92baa548-1b07-11e7-9861-d856bd67f39d.png["1.
+image:../images/menu_etf_2-1.png["1.
 Menu"]
 
-In the *Start test* section all available (respectively installed) Executable Test
+In the *Esxecutable Test Suites* section all available (respectively installed) Executable Test
 Suites are listed. Within this section, an Executable Test Suite can be
 selected and run against a Test Object.
 
@@ -23,3 +23,5 @@ The *Test reports* section list the test results of completed test runs.
 
 The *Help* link refers to a help page. Unless otherwise set by the administrator,
 it refers to this page.
+
+Also there is a fifth view and it's the *Test Classes*, this one doesn't appear in the menu and it is the default one, the landing view.

@@ -20,12 +20,12 @@
 include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
-:doc-title: Web API v2
-:doc-status: approved
+:doc-title: Web API v2.1
+:doc-status: not approved
 :doc-date: 2017-06-21
 :doc-description: Quickstart manual for the 2nd version of the ETF Web API. For the complete documentation of the API, consult the Swagger documentation.
-:doc-audience: Developers planning to use the ETF Web API v2 to automate test runs with an ETF instance, for example in an automated test pipeline.
-:doc-id: https://docs.etf-validator.net/v2.0/Developer_manuals/WEB-API.html
+:doc-audience: Developers planning to use the ETF Web API v2.1 to automate test runs with an ETF instance, for example in an automated test pipeline.
+:doc-id: https://docs.etf-validator.net/v2.1/Developer_manuals/WEB-API.html
 :doc-lang: EN
 
 include::../General/Document-metadata.adoc[]
@@ -36,6 +36,7 @@ include::../General/Document-metadata.adoc[]
 |  *Date* | *Editor* | *Comments*
 | 2017-04-24 | Jon Herrmann | document converted from GitHub wiki
 | 2017-06-21 | Clemens Portele | editorial updates
+| 2022-08-18 | Guadaltel | Updated to v2.1
 |===
 
 <<<
@@ -48,7 +49,7 @@ include::../General/About-short.adoc[]
 
 == Overview
 
-The ETF Web API v2 is used to retrieve Framework metadata, start/observe/manage tests and retrieve test results.
+The ETF Web API v2.1 is used to retrieve Framework metadata, start/observe/manage tests and retrieve test results.
 
 The API is published and documented in detail as a Swagger definition on link:https://app.swaggerhub.com/api/etf/etf/[Swaggerhub]. The ETF web application instance also provides the Swagger web interface which is available at
 

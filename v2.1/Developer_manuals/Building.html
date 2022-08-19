@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>Building ETF</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="../stylesheets/pygments-autumn.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
 </head>
 <body class="book toc2 toc-left">
@@ -23,6 +22,7 @@
 <li><a href="#_prerequisites">Prerequisites</a></li>
 <li><a href="#_accessing_the_source_code">Accessing the source code</a></li>
 <li><a href="#_compiling_the_source_code">Compiling the source code</a></li>
+<li><a href="#_including_test_drivers_to_the_web_application">Including Test drivers to the web application</a></li>
 <li><a href="#_running_the_web_application">Running the web application</a></li>
 <li><a href="#_building_other_etf_components">Building other ETF components</a></li>
 <li><a href="#_test_driver_development">Test driver development</a></li>
@@ -35,7 +35,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-none grid-none spread">
+<table class="tableblock frame-none grid-none stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -53,7 +53,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_building_etf" class="sect0">Building ETF</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none spread">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -65,7 +65,7 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-06-21</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-17</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
@@ -94,7 +94,7 @@ Testing framework for spatial data and services</span></p></td>
 <div class="sect1">
 <h2 id="_changelog">Changelog</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -122,6 +122,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2017-07-12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test driver development section</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updated to v2.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -153,13 +158,16 @@ Testing framework for spatial data and services</span></p></td>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE Development Kit JDK 8 installed</a></p>
+<p><a href="https://jdk.java.net/archive/">OpenJDK 11 is installed</a></p>
 </li>
 <li>
 <p>Ensure JAVA_HOME environment variable is set</p>
 </li>
 <li>
 <p><a href="https://git-scm.com/downloads">Git installed</a></p>
+</li>
+<li>
+<p><a href="https://www.eclipse.org/jetty/download.php">Jetty 9 installed</a></p>
 </li>
 </ul>
 </div>
@@ -169,7 +177,10 @@ Testing framework for spatial data and services</span></p></td>
 <h2 id="_accessing_the_source_code">Accessing the source code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The code base of the web application can be cloned from <a href="https://github.com/interactive-instruments/etf-webapp">GitHub</a>.</p>
+<p>The already compiled .war archive in <a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+</div>
+<div class="paragraph">
+<p>However you can compile it youself. For this option, the code base of the web application can be cloned from <a href="https://github.com/etf-validator/etf-webapp">GitHub</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -178,14 +189,14 @@ Testing framework for spatial data and services</span></p></td>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-because the ETF version 2 is not finally released, the next branch must be used.
+because the ETF version 2.1 is not finally released, the next branch must be used.
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="bash">git clone -b next https://github.com/interactive-instruments/etf-webapp.git</code></pre>
+<pre class="pygments highlight"><code data-lang="bash">git clone -b next https://github.com/etf-validator/etf-webapp.git</code></pre>
 </div>
 </div>
 </div>
@@ -218,7 +229,7 @@ version in the version.properties file, for example to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>version = 2.0.0-SNAPSHOT</pre>
+<pre>version = 2.1.0-SNAPSHOT</pre>
 </div>
 </div>
 </td>
@@ -234,8 +245,107 @@ version in the version.properties file, for example to:</p>
 <div class="listingblock">
 <div class="title">On Linux execute</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build</code></pre>
+<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install spotlessApply -x test</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_including_test_drivers_to_the_web_application">Including Test drivers to the web application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test drivers are not included by default in the etf-webapp. So, to be able to use them and have access to all the tests that ETF offer, they should be added before the run of the web application. To do so you can download them already built or bouild them yourselves. For the first option they can be download using these links:</p>
+</div>
+<div class="paragraph">
+<p>To build them yourself, first they should be cloned from these links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/etf-validator/etf-bsxtd.git">etf-bsxtd</a> ETF test driver for running BaseX XQuery based test projects</p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-tetd.git">etf-tetd</a> ETF test driver for executing Test Suites on a remote OGC TEAM Engine instance</p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-suitd.git">etf-suitd</a> ETF test driver for running SoapUI based test projects</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Test drivers then should be built with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For etf-bsxtd:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">On a Windows command line run</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Linux execute</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For etf-suitd:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">On a Windows command line run</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install -x test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Linux execute</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install -x test</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For etf-tetd:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">On a Windows command line run</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install spotlessApply -x test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Linux execute</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install spotlessApply -x test</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Option "-x test" skips tests, while "spotlessApply" solves issues regarding code formatting.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After you have the compiled .jar archives, in order to deploy the ETF, we have to start from etf-webapp and create a folder named "testdrivers" inside the war file where to place the previous compilated .jar files (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) in it.</p>
 </div>
 </div>
 </div>
@@ -243,22 +353,70 @@ version in the version.properties file, for example to:</p>
 <h2 id="_running_the_web_application">Running the web application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The web application can be started by executing the <strong>jettyRun</strong> task.</p>
+<p>Copy the etf-webapp.war file to JETTY_HOME/webapps or if you have created a JETTY_BASE, then copy the etf-webapp.war file to JETTY_BASE/webapps.</p>
 </div>
-<div class="listingblock">
-<div class="title">On a Windows command line run</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat jettyRunWar</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">On Linux execute</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew.sh jettyRunWar</code></pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The web application can then be accessed at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn&#8217;t work you can use <strong>JETTY_HOME/bin/jetty.sh start</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If issues arise in the deployment, we probably need to manually add the following libraries to etf-webapp.war/WEB-INF/lib/ in order to make the deployment work properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk18on/1.71/bcprov-jdk18on-1.71.jar">bcprov-jdk18on-171.jar</a></p>
+</li>
+<li>
+<p><a href="https://repo1.maven.org/maven2/org/apache/flex/blazeds/flex-messaging-core/4.7.3/flex-messaging-core-4.7.3.jar">flex-messaging-core-4.7.3.jar</a></p>
+</li>
+<li>
+<p><a href="https://repo.b3p.nl/nexus/repository/public/com/btr/proxy-vole/20131209/proxy-vole-20131209.jar">proxy-vole-20131209.jar</a></p>
+</li>
+<li>
+<p><a href="https://repo1.maven.org/maven2/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar">wsdl4j-1.6.2.jar</a></p>
+</li>
+<li>
+<p><a href="https://repo1.maven.org/maven2/xmlunit/xmlunit/1.6/xmlunit-1.6.jar">xmlunit-1.6.jar</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The web application can then be accessed at <a href="http://localhost:8080">http://localhost:8080/etf-webapp</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To stop the process in case of using <strong>java -jar start.jar</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>, use <strong>CTRL+C</strong>. In case of using <strong>JETTY_HOME/bin/jetty.sh start</strong>, use <strong>JETTY_HOME/bin/jetty.sh stop</strong>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -271,22 +429,16 @@ version in the version.properties file, for example to:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/interactive-instruments/etf-core">etf-core</a> ETF core library including API and domain model</p>
+<p><a href="https://github.com/etf-validator/etf-core">etf-core</a> ETF core library including API and domain model</p>
 </li>
 <li>
-<p><a href="https://github.com/interactive-instruments/etf-spi">etf-spi</a> ETF Service Provider Interface</p>
+<p><a href="https://github.com/etf-validator/etf-spi">etf-spi</a> ETF Service Provider Interface</p>
 </li>
 <li>
-<p><a href="https://github.com/interactive-instruments/etf-bsxds">etf-bsxds</a> ETF data storage based on the BaseX database</p>
+<p><a href="https://github.com/etf-validator/etf-bsxds">etf-bsxds</a> ETF data storage based on the BaseX database</p>
 </li>
 <li>
-<p><a href="https://github.com/interactive-instruments/etf-suitd">etf-suitd</a> ETF SoapUI test driver</p>
-</li>
-<li>
-<p><a href="https://github.com/interactive-instruments/etf-sui-ae">etf-sui-ae</a> ETF test driver adapter and extensions for SoapUI</p>
-</li>
-<li>
-<p><a href="https://github.com/interactive-instruments/etf-sui-ae">etf-bsxtd</a> ETF BaseX test driver</p>
+<p><a href="https://github.com/etf-validator/etf-sui-ae">etf-sui-ae</a> ETF test driver adapter and extensions for SoapUI</p>
 </li>
 </ul>
 </div>
@@ -301,7 +453,7 @@ version in the version.properties file, for example to:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-because the ETF version 2 is not finally released, the next branches must be used.
+because the ETF version 2.1 is not finally released, the next branches must be used.
 </td>
 </tr>
 </table>
@@ -380,7 +532,7 @@ Build-JDK: 1.8.0_102</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-24 10:32:53 CEST
+Last updated 2022-08-18 11:43:47 +0200
 </div>
 </div>
 </body>

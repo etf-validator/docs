@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>User manual for central deployments</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="../stylesheets/pygments-autumn.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
 </head>
 <body class="book toc2 toc-left">
@@ -38,7 +37,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-none grid-none spread">
+<table class="tableblock frame-none grid-none stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -56,7 +55,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_user_manual_for_central_deployments" class="sect0">User manual for central deployments</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none spread">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -97,7 +96,7 @@ Testing framework for spatial data and services</span></p></td>
 <div class="sect1">
 <h2 id="_changelog">Changelog</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -120,6 +119,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2017-06-21</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clemens Portele</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">editorial updates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updated to v2.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -167,10 +171,10 @@ and to inspect the test results. These task areas are reflected in the
 menu structure.</p>
 </div>
 <div class="paragraph thumb">
-<p><span class="image"><img src="https://cloud.githubusercontent.com/assets/13570741/24769663/92baa548-1b07-11e7-9861-d856bd67f39d.png" alt="1. Menu"></span></p>
+<p><span class="image"><img src="../images/menu_etf_2-1.png" alt="1. Menu"></span></p>
 </div>
 <div class="paragraph">
-<p>In the <strong>Executable Test Suites</strong> section all available (respectively installed) Executable Test
+<p>In the <strong>Esxecutable Test Suites</strong> section all available (respectively installed) Executable Test
 Suites are listed. Within this section, an Executable Test Suite can be
 selected and run against a Test Object.</p>
 </div>
@@ -200,7 +204,7 @@ system and enables to open a monitor view for single test runs.</p>
 it refers to this page.</p>
 </div>
 <div class="paragraph">
-<p>Also there is a fifth view and it's the <strong>Test Classes</strong>, this one doesn't appear in the menu and it is the default one, the landing view.</p>
+<p>Also there is a fifth view and it&#8217;s the <strong>Test Classes</strong>, this one doesn&#8217;t appear in the menu and it is the default one, the landing view.</p>
 </div>
 </div>
 </div>
@@ -209,13 +213,11 @@ it refers to this page.</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_test_suite_selection">3.1. Test Suite selection</h3>
-<div class="sect3">
-<h4 id="_file_based_tests">3.1.1. Executable Test Suite selection</h4>
 <div class="paragraph">
-<p>When you navigate to Executable Test Suites landing view shows the available <em>Executable Test Suites</em>.</p>
+<p>Once you select the <strong>Executable Test Suites</strong> option in the menu, the landing view shows the available <em>Executable Test Suites</em>.</p>
 </div>
 <div class="paragraph thumb">
-<p><span class="image"><img src="https://cloud.githubusercontent.com/assets/13570741/24769794/0ab17ed2-1b08-11e7-98af-7dfd4f7224ef.png" alt="2 ETS list"></span></p>
+<p><span class="image"><img src="../images/2_ETS_list.png" alt="2 ETS list"></span></p>
 </div>
 <div class="paragraph">
 <p>Additional information about a Test Suite can be shown by clicking on
@@ -259,7 +261,7 @@ and change dates.</p>
 <strong>use</strong> flip switch on the right-hand side.</p>
 </div>
 <div class="paragraph thumb">
-<p><span class="image"><img src="https://cloud.githubusercontent.com/assets/13570741/24769985/b0ee7872-1b08-11e7-9d5e-bdd374596be6.png" alt="4 ETS selection"></span></p>
+<p><span class="image"><img src="../images/4_ETS_selection.png" alt="4 ETS selection"></span></p>
 </div>
 <div class="paragraph">
 <p>A <em>Start</em> button appears once at least one Test Suite is selected.</p>
@@ -283,13 +285,6 @@ automatically executed during the test run.</p>
 <p>A click on the <em>Start</em> button will open a new view that asks the user
 about the target to be tested.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_file_based_tests">3.1.2. Test Class selection</h4>
-</div>
-<div class="paragraph">
-<p>In the landing view, you can see the possible test classes. If you need you can also use a local one using the button in the upper right corner.</p>
-
 </div>
 <div class="sect2">
 <h3 id="_test_run_configuration">3.2. Test Run configuration</h3>
@@ -440,7 +435,7 @@ The Status view shows all running tests. A click on the Test Run opens
 the Monitor View of that Test Run.</p>
 </div>
 <div class="paragraph thumb">
-<p><span class="image"><img src="https://cloud.githubusercontent.com/assets/13570741/24776115/d22463b4-1b1f-11e7-9ad0-262ecbb5aecc.png" alt="screenshot15"></span></p>
+<p><span class="image"><img src="../images/screenshot15.png" alt="screenshot15"></span></p>
 </div>
 <div class="paragraph">
 <p>When a Test Run finishes and the Monitor View is opened, the Test Report
@@ -456,7 +451,7 @@ is displayed automatically.</p>
 Test Runs.</p>
 </div>
 <div class="paragraph thumb">
-<p><span class="image"><img src="https://cloud.githubusercontent.com/assets/13570741/24776748/781f80d0-1b22-11e7-8386-107febbb9c3e.png" alt="screenshot_X"></span></p>
+<p><span class="image"><img src="../images/screenshot_X.png" alt="screenshot_X"></span></p>
 </div>
 <div class="paragraph">
 <p>By clicking on the plus button information, about the start time, the
@@ -575,7 +570,7 @@ instance the response from a service on the Test Step level (note the
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-24 10:28:50 CEST
+Last updated 2022-08-19 12:11:21 +0200
 </div>
 </div>
 </body>

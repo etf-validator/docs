@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
-<title>Web API v2</title>
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Web API v2.1</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="../stylesheets/pygments-autumn.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
 </head>
 <body class="book toc2 toc-left">
@@ -16,7 +15,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of contents</div>
 <ul class="sectlevel0">
-<li><a href="#_web_api_v2">Web API v2</a>
+<li><a href="#_web_api_v2_1">Web API v2.1</a>
 <ul class="sectlevel1">
 <li><a href="#_changelog">Changelog</a></li>
 <li><a href="#_about_etf">About ETF</a></li>
@@ -31,7 +30,7 @@
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-none grid-none spread">
+<table class="tableblock frame-none grid-none stretch">
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -46,10 +45,10 @@ Testing framework for spatial data and services</span></p></td>
 </table>
 </div>
 </div>
-<h1 id="_web_api_v2" class="sect0">Web API v2</h1>
+<h1 id="_web_api_v2_1" class="sect0">Web API v2.1</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none spread">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -57,7 +56,7 @@ Testing framework for spatial data and services</span></p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">approved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not approved</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
@@ -69,7 +68,7 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Target audience</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developers planning to use the ETF Web API v2 to automate test runs with an ETF instance, for example in an automated test pipeline.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers planning to use the ETF Web API v2.1 to automate test runs with an ETF instance, for example in an automated test pipeline.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
@@ -77,7 +76,7 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Identifier</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.etf-validator.net/v2.0/Developer_manuals/WEB-API.html" class="bare">https://docs.etf-validator.net/v2.0/Developer_manuals/WEB-API.html</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.etf-validator.net/v2.1/Developer_manuals/WEB-API.html" class="bare">https://docs.etf-validator.net/v2.1/Developer_manuals/WEB-API.html</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Language</strong></p></td>
@@ -90,7 +89,7 @@ Testing framework for spatial data and services</span></p></td>
 <div class="sect1">
 <h2 id="_changelog">Changelog</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
@@ -113,6 +112,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2017-06-21</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clemens Portele</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">editorial updates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updated to v2.1</p></td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +146,7 @@ Testing framework for spatial data and services</span></p></td>
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The ETF Web API v2 is used to retrieve Framework metadata, start/observe/manage tests and retrieve test results.</p>
+<p>The ETF Web API v2.1 is used to retrieve Framework metadata, start/observe/manage tests and retrieve test results.</p>
 </div>
 <div class="paragraph">
 <p>The API is published and documented in detail as a Swagger definition on <a href="https://app.swaggerhub.com/api/etf/etf/">Swaggerhub</a>. The ETF web application instance also provides the Swagger web interface which is available at</p>
@@ -340,7 +344,7 @@ Example:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-24 10:35:39 CEST
+Last updated 2022-08-18 13:02:50 +0200
 </div>
 </div>
 </body>

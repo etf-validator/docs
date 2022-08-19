@@ -2,10 +2,10 @@
 
 == Test Suite selection
 
-The landing view shows the available __Executable Test Suites__.
+Once you select the *Executable Test Suites* option in the menu, the landing view shows the available __Executable Test Suites__.
 
 [.thumb]
-image:https://cloud.githubusercontent.com/assets/13570741/24769794/0ab17ed2-1b08-11e7-98af-7dfd4f7224ef.png["2
+image:../images/2_ETS_list.png["2
 ETS list"]
 
 Additional information about a Test Suite can be shown by clicking on
@@ -33,7 +33,7 @@ To start a Test Run, a Test Suite must be selected with a click on the
 *use* flip switch on the right-hand side.
 
 [.thumb]
-image:https://cloud.githubusercontent.com/assets/13570741/24769985/b0ee7872-1b08-11e7-9d5e-bdd374596be6.png["4
+image:../images/4_ETS_selection.png["4
 ETS selection"]
 
 A _Start_ button appears once at least one Test Suite is selected.

@@ -36,6 +36,7 @@ include::../General/Document-metadata.adoc[]
 |  *Date* | *Editor* | *Comments*
 | 2017-04-20 | Jon Herrmann | document created
 | 2017-06-21 | Clemens Portele | editorial updates
+| 2022-08-19 | Guadaltel | Updated to v2.1
 |===
 
 <<<
