@@ -20,6 +20,10 @@ Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a 
 
 NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
 
+In order to have a proper performance, Java heap size must be set to at least 4 GB RAM (> 8GB are recommended).
+Thus, -Xmx parameter needs to be set and assigned to JAVA_OPTIONS updating JAVA_OPTIONS parameter, by setting JAVA_OPTS as environment variable: 
+set JAVA_OPTS=%JAVA_OPTS% -Xmx4G
+ 
 Initiate Jetty 9 using **java -jar start.jar** in JETTY_HOME or JETTY_BASE, in case you have one.
 
 .ETF starts to deploy on Windows
