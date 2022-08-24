@@ -16,14 +16,6 @@ Download these resources provided in the ETF webpage:
 
 Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added. 
 
-Download and include the following libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:
-
-* bcprov-jdk18on-171.jar
-* flex-messaging-core-4.7.3.jar
-* proxy-vole-20131209.jar
-* wsdl4j-1.6.2.jar
-* xmlunit-1.6.jar
-
 Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a JETTY_BASE, then copy the etf-webapp.war file to **JETTY_BASE/webapps**.
 
 NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
