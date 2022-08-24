@@ -14,7 +14,7 @@ Download these resources provided in the ETF webpage:
 * link:https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0[Test Driver etf-tetd-1.1.0-SNAPSHOT.jar]
 * link:https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0[Test Driver etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar]
 
-Each Test Driver can be installed in the link:Admin_manuals/index.html#_etf_data_directory_structure[test driver directory] and will be used by ETF on startup.
+Each Test Driver can be installed in the link:index.html#_etf_data_directory_structure[test driver directory] and will be used by ETF on startup.
 
 Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a JETTY_BASE, then copy the etf-webapp.war file to **JETTY_BASE/webapps**.
 
