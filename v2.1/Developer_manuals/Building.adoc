@@ -242,6 +242,12 @@ Build-JDK: 1.8.0_102
 ----
 You can fix the problem by cloning the repository from GitHub using GIT.
 
+Q: I obtain different sizes in the war or jar files when I compile them in my environment 
+than the size of the released artifacts.
+
+A: These differences result from several local system properties that are collected by the build system and included in the manifest file.
+
+
 ***
 
 include::../General/Legal_Privacy.adoc[]
