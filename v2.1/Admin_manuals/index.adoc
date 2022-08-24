@@ -21,7 +21,7 @@ include::../General/Logo.adoc[]
 
 :doc-warning-work-in-progress: false
 :doc-title: Administration of an ETF validator
-:doc-status: not approved
+:doc-status: approved
 :doc-date: 2022-07-06
 :doc-description: This document describes how to install and configure an ETF validator.
 :doc-audience: Administrators who want to set up a deployment of the ETF validator. Knowledge about Jetty 9 is recommended.
@@ -38,7 +38,8 @@ include::../General/Document-metadata.adoc[]
 | 2017-06-21 | Clemens Portele | editorial updates
 | 2017-06-24 | Jon Herrmann | FAQ added
 | 2017-09-28 | Jon Herrmann | Manual installation instructions for GmlGeoX removed as it is now installed by the BSX test driver
-| 2022-07-06 | JRC | Updated to the vesion 2.1 and Jetty9 instructions added 
+| 2022-07-06 | JRC | Updated to the vesion 2.1 and Jetty9 instructions added
+| 2022-08-24 | Jon Herrmann  | some changes, approved
 |===
 
 <<<
@@ -52,7 +53,6 @@ include::../General/About-short.adoc[]
 These admin instructions are related to ETF 2.1 version
 
 :numbered:
-include::docker.adoc[]
 
 include::Jetty9_Windows.adoc[]
 

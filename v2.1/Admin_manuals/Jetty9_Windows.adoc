@@ -9,16 +9,14 @@
 
 Download these resources provided in the ETF webpage:
 
-* link:https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1[etf-webapp.war] 
-* link:https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1[etf-suitd-legacy-2.1.0-SNAPSHOT.jar]
-* link:https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1[etf-tetd-1.1.0-SNAPSHOT.jar]
-* link:https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1[etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar]
+* link:https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0[Application etf-webapp.war] 
+* link:https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0[Test Driver etf-suitd-legacy-2.1.0-SNAPSHOT.jar]
+* link:https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0[Test Driver etf-tetd-1.1.0-SNAPSHOT.jar]
+* link:https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0[Test Driver etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar]
 
-Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added. 
+Each Test Driver can be installed in the link:Admin_manuals/index.html#_etf_data_directory_structure[test driver directory] (fallback **%ALLUSERSPROFILE%\etf\td** ) and will be used by ETF on startup.
 
 Copy the etf-webapp.war file to **JETTY_HOME/webapps** or if you have created a JETTY_BASE, then copy the etf-webapp.war file to **JETTY_BASE/webapps**.
-
-NOTE: The default JETTY_HOME is located at **/usr/share/jetty9**. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
 
 In order to have a proper performance, Java heap size must be set to at least 4 GB RAM (> 8GB are recommended).
 Thus, -Xmx parameter needs to be set and assigned to JAVA_OPTIONS updating JAVA_OPTIONS parameter, by setting JAVA_OPTS as environment variable: 
@@ -34,7 +32,7 @@ image::../images/etf-started-windows.png[ETF already deployed]
 
 NOTE: To stop the process use *CTRL+C*.
 
-Download <<ets-installation>> and extract archives into the **~/.etf/projects** directory. The web application will automatically load the Executable Test Suites after a few seconds.
+Download <<ets-installation>> and extract archives into the configured project directory (fallback **%ALLUSERSPROFILE%\etf\projects** ). The web application will automatically load the Executable Test Suites after a few seconds.
 
 The web application can be accessed via link:http://localhost:8080/etf-webapp[http://localhost:8080/etf-webapp].
 

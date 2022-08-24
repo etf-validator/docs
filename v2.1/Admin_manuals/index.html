@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <title>Administration of an ETF validator</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,7 +71,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_administration_of_an_etf_validator" class="sect0">Administration of an ETF validator</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none stretch">
+<table class="tableblock frame-ends grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -79,7 +79,7 @@ Testing framework for spatial data and services</span></p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">not approved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">approved</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
@@ -151,6 +151,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JRC</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Updated to the vesion 2.1 and Jetty9 instructions added</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some changes, approved</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -205,58 +210,29 @@ Testing framework for spatial data and services</span></p></td>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0">Application etf-webapp.war</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1">etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0">Test Driver etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1">etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0">Test Driver etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1">etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0">Test Driver etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added.</p>
-</div>
-<div class="paragraph">
-<p>Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>bcprov-jdk18on-171.jar</p>
-</li>
-<li>
-<p>flex-messaging-core-4.7.3.jar</p>
-</li>
-<li>
-<p>proxy-vole-20131209.jar</p>
-</li>
-<li>
-<p>wsdl4j-1.6.2.jar</p>
-</li>
-<li>
-<p>xmlunit-1.6.jar</p>
-</li>
-</ul>
+<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> (fallback <strong>%ALLUSERSPROFILE%\etf\td</strong> ) and will be used by ETF on startup.</p>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>In order to have a proper performance, Java heap size must be set to at least 4 GB RAM (&gt; 8GB are recommended).
+Thus, -Xmx parameter needs to be set and assigned to JAVA_OPTIONS updating JAVA_OPTIONS parameter, by setting JAVA_OPTS as environment variable:
+set JAVA_OPTS=%JAVA_OPTS% -Xmx4G</p>
 </div>
 <div class="paragraph">
 <p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one.</p>
@@ -286,7 +262,7 @@ To stop the process use <strong>CTRL+C</strong>.
 </table>
 </div>
 <div class="paragraph">
-<p>Download <a href="#ets-installation">Executable Test Suites</a> and extract archives into the <strong>~/.etf/projects</strong> directory. The web application will automatically load the Executable Test Suites after a few seconds.</p>
+<p>Download <a href="#ets-installation">Executable Test Suites</a> and extract archives into the configured project directory (fallback <strong>%ALLUSERSPROFILE%\etf\projects</strong> ). The web application will automatically load the Executable Test Suites after a few seconds.</p>
 </div>
 <div class="paragraph">
 <p>The web application can be accessed via <a href="http://localhost:8080/etf-webapp">http://localhost:8080/etf-webapp</a>.</p>
@@ -327,43 +303,21 @@ To stop the process use <strong>CTRL+C</strong>.
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+<p><a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0">Application etf-webapp.war</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0-rc.1">etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-suitd/releases/tag/2.1.0">Test Driver etf-suitd-legacy-2.1.0-SNAPSHOT.jar</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0-rc.1">etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-tetd/releases/tag/1.1.0">Test Driver etf-tetd-1.1.0-SNAPSHOT.jar</a></p>
 </li>
 <li>
-<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0-rc.1">etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
+<p><a href="https://github.com/etf-validator/etf-bsxtd/releases/tag/3.0.0">Test Driver etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Inside the ETF-webapp create a testdrivers folder, in which the  other three resources (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) have to be added.</p>
-</div>
-<div class="paragraph">
-<p>Download and include the folowing libraries inside etf-webapp.war/WEB-INF/lib/ to make the deployment work properly:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>bcprov-jdk18on-171.jar</p>
-</li>
-<li>
-<p>flex-messaging-core-4.7.3.jar</p>
-</li>
-<li>
-<p>proxy-vole-20131209.jar</p>
-</li>
-<li>
-<p>wsdl4j-1.6.2.jar</p>
-</li>
-<li>
-<p>xmlunit-1.6.jar</p>
-</li>
-</ul>
+<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
@@ -379,6 +333,11 @@ The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>In order to have a proper performance, Java heap size must be set to at least 4 GB RAM (&gt; 8GB are recommended).
+Thus, -Xmx parameter needs to be set and assigned to JAVA_OPTIONS updating JAVA_OPTIONS parameter at $JETTY_HOME/bin/jetty.sh:
+JAVA_OPTIONS="$JAVA_OPTIONS -Xmx4G"</p>
 </div>
 <div class="paragraph">
 <p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn&#8217;t work you can use <strong>JETTY_HOME/bin/jetty.sh start</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>.</p>
@@ -408,7 +367,7 @@ To stop the process in case of using <strong>java -jar start.jar</strong> or <st
 </table>
 </div>
 <div class="paragraph">
-<p>Download <a href="#ets-installation">Executable Test Suites</a> and extract archives into the <strong>~/.etf/projects</strong> directory. The web application will automatically load the Executable Test Suites after a few seconds.</p>
+<p>Download <a href="#ets-installation">Executable Test Suites</a> and extract archives into the configured project directory (fallback <strong>~/.etf/projects</strong> directory). The web application will automatically load the Executable Test Suites after a few seconds.</p>
 </div>
 <div class="paragraph">
 <p>The web application can be accessed via <a href="http://localhost:8080/etf-webapp">http://localhost:8080/etf-webapp</a>.</p>
@@ -826,7 +785,7 @@ The GmlGeoX module will be automatically reinstalled.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-06 15:00:56 +0200
+Last updated 2022-08-24 22:33:25 +0200
 </div>
 </div>
 </body>

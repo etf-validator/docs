@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <title>Building ETF</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,12 +20,9 @@
 <li><a href="#_changelog">Changelog</a></li>
 <li><a href="#_about_etf">About ETF</a></li>
 <li><a href="#_prerequisites">Prerequisites</a></li>
-<li><a href="#_accessing_the_source_code">Accessing the source code</a></li>
+<li><a href="#_cloning_the_source_code">Cloning the source code</a></li>
 <li><a href="#_compiling_the_source_code">Compiling the source code</a></li>
-<li><a href="#_including_test_drivers_to_the_web_application">Including Test drivers to the web application</a></li>
-<li><a href="#_running_the_web_application">Running the web application</a></li>
-<li><a href="#_building_other_etf_components">Building other ETF components</a></li>
-<li><a href="#_test_driver_development">Test driver development</a></li>
+<li><a href="#_using_test_drivers_with_the_web_application">Using test drivers with the web application</a></li>
 <li><a href="#_faq">FAQ</a></li>
 </ul>
 </li>
@@ -53,7 +50,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_building_etf" class="sect0">Building ETF</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-topbot grid-none stretch">
+<table class="tableblock frame-ends grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -61,7 +58,7 @@ Testing framework for spatial data and services</span></p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">not approved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">approved</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
@@ -128,6 +125,11 @@ Testing framework for spatial data and services</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Updated to v2.1</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">some changes, approved</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -167,20 +169,23 @@ Testing framework for spatial data and services</span></p></td>
 <p><a href="https://git-scm.com/downloads">Git installed</a></p>
 </li>
 <li>
-<p><a href="https://www.eclipse.org/jetty/download.php">Jetty 9 installed</a></p>
+<p>For debugging: an IDE with the corresponding plugins
+for an web application server (for instance <a href="https://plugins.jetbrains.com/plugin/18721-jetty">this IntelliJ plugin</a> or <a href="https://marketplace.eclipse.org/content/eclipse-jetty">this plugin for Eclipse</a>). Or you install an web application server and connect via an open debug port.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_accessing_the_source_code">Accessing the source code</h2>
+<h2 id="_cloning_the_source_code">Cloning the source code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The already compiled .war archive in <a href="https://github.com/etf-validator/etf-webapp/releases/tag/2.1.0-rc.1">etf-webapp.war</a></p>
+<p>Clone the Source code from the <a href="https://github.com/etf-validator/etf-webapp">GitHub repository</a>.</p>
 </div>
-<div class="paragraph">
-<p>However you can compile it youself. For this option, the code base of the web application can be cloned from <a href="https://github.com/etf-validator/etf-webapp">GitHub</a>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="bash">git clone -b next https://github.com/etf-validator/etf-webapp.git</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -189,15 +194,10 @@ Testing framework for spatial data and services</span></p></td>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-because the ETF version 2.1 is not finally released, the next branch must be used.
+the next branch contains the latests developments.
 </td>
 </tr>
 </table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">git clone -b next https://github.com/etf-validator/etf-webapp.git</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -210,7 +210,7 @@ wrapper script will automatically download the required Gradle version and
 start the build process afterwards.</p>
 </div>
 <div class="paragraph">
-<p>Dependencies are downloaded from the interactive instruments repositories.
+<p>Dependencies are currently downloaded from the interactive instruments repositories.
 Currently only the snapshot repository can be accessed with the credentials
 etf-public-dev / etf-public-dev . This is automatically done by
 default.</p>
@@ -223,7 +223,7 @@ default.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The repository to be used is determined from the version.properties file.
+<p>The artifact repository to be used is determined from the version.properties file.
 Make sure the version is suffixed with "-SNAPSHOT". If necessary, change the
 version in the version.properties file, for example to:</p>
 </div>
@@ -239,25 +239,25 @@ version in the version.properties file, for example to:</p>
 <div class="listingblock">
 <div class="title">On a Windows command line run</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build</code></pre>
+<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build war</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">On Linux execute</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install spotlessApply -x test</code></pre>
+<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build war</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_including_test_drivers_to_the_web_application">Including Test drivers to the web application</h2>
+<h2 id="_using_test_drivers_with_the_web_application">Using test drivers with the web application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The test drivers are not included by default in the etf-webapp. So, to be able to use them and have access to all the tests that ETF offer, they should be added before the run of the web application. To do so you can download them already built or bouild them yourselves. For the first option they can be download using these links:</p>
+<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
 </div>
 <div class="paragraph">
-<p>To build them yourself, first they should be cloned from these links:</p>
+<p>To build the test drivers the following repositories need to be cloned:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -273,63 +273,18 @@ version in the version.properties file, for example to:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Test drivers then should be built with the following commands:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For etf-bsxtd:</p>
-</li>
-</ul>
+<p>Test drivers then should be built with the following commands (replace the TMP with you test driver directory):</p>
 </div>
 <div class="listingblock">
 <div class="title">On a Windows command line run</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install</code></pre>
+<pre class="pygments highlight"><code data-lang="cmd">C:\etf-testdriver&gt; gradlew.bat -Petf.td.deployment.dir="C:\TMP" build install</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">On Linux execute</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For etf-suitd:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">On a Windows command line run</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install -x test</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">On Linux execute</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install -x test</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For etf-tetd:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">On a Windows command line run</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build install spotlessApply -x test</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">On Linux execute</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build install spotlessApply -x test</code></pre>
+<pre class="pygments highlight"><code data-lang="bash">$ gradlew.bat -Petf.td.deployment.dir="/TMP" build install</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -339,156 +294,11 @@ version in the version.properties file, for example to:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Option "-x test" skips tests, while "spotlessApply" solves issues regarding code formatting.
+If your git client changes the line endings, your need to add the
+"spotlessApply" task to the build commands.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>After you have the compiled .jar archives, in order to deploy the ETF, we have to start from etf-webapp and create a folder named "testdrivers" inside the war file where to place the previous compilated .jar files (etf-suitd-legacy-2.1.0-SNAPSHOT.jar, etf-tetd-1.1.0-SNAPSHOT.jar, etf-bsxtd-legacy-2.1.0-SNAPSHOT.jar) in it.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_running_the_web_application">Running the web application</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Copy the etf-webapp.war file to JETTY_HOME/webapps or if you have created a JETTY_BASE, then copy the etf-webapp.war file to JETTY_BASE/webapps.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The default JETTY_HOME is located at <strong>/usr/share/jetty9</strong>. In case you downloaded it form a browser, JETTY_HOME would be where are the folders containing jetty9.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Initiate Jetty 9 using <strong>java -jar start.jar</strong> in JETTY_HOME or JETTY_BASE, in case you have one. If it doesn&#8217;t work you can use <strong>JETTY_HOME/bin/jetty.sh start</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If issues arise in the deployment, we probably need to manually add the following libraries to etf-webapp.war/WEB-INF/lib/ in order to make the deployment work properly:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk18on/1.71/bcprov-jdk18on-1.71.jar">bcprov-jdk18on-171.jar</a></p>
-</li>
-<li>
-<p><a href="https://repo1.maven.org/maven2/org/apache/flex/blazeds/flex-messaging-core/4.7.3/flex-messaging-core-4.7.3.jar">flex-messaging-core-4.7.3.jar</a></p>
-</li>
-<li>
-<p><a href="https://repo.b3p.nl/nexus/repository/public/com/btr/proxy-vole/20131209/proxy-vole-20131209.jar">proxy-vole-20131209.jar</a></p>
-</li>
-<li>
-<p><a href="https://repo1.maven.org/maven2/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar">wsdl4j-1.6.2.jar</a></p>
-</li>
-<li>
-<p><a href="https://repo1.maven.org/maven2/xmlunit/xmlunit/1.6/xmlunit-1.6.jar">xmlunit-1.6.jar</a></p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The web application can then be accessed at <a href="http://localhost:8080">http://localhost:8080/etf-webapp</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To stop the process in case of using <strong>java -jar start.jar</strong> or <strong>JETTY_HOME/bin/jetty.sh run</strong>, use <strong>CTRL+C</strong>. In case of using <strong>JETTY_HOME/bin/jetty.sh start</strong>, use <strong>JETTY_HOME/bin/jetty.sh stop</strong>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building_other_etf_components">Building other ETF components</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The web application depends on several other ETF components:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/etf-validator/etf-core">etf-core</a> ETF core library including API and domain model</p>
-</li>
-<li>
-<p><a href="https://github.com/etf-validator/etf-spi">etf-spi</a> ETF Service Provider Interface</p>
-</li>
-<li>
-<p><a href="https://github.com/etf-validator/etf-bsxds">etf-bsxds</a> ETF data storage based on the BaseX database</p>
-</li>
-<li>
-<p><a href="https://github.com/etf-validator/etf-sui-ae">etf-sui-ae</a> ETF test driver adapter and extensions for SoapUI</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The source code of the components must be cloned using GIT
-(otherwise a 'repository not found' error occurs).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-because the ETF version 2.1 is not finally released, the next branches must be used.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Changed components can be installed into the local maven repository with the
-gradle <strong>install</strong> command and be used by the etf-webapp component afterwards.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_test_driver_development">Test driver development</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Test drivers are released with the ETF web application. There are integrated
-into the WAR file and extracted into the test driver directory at start up,
-depending on the version numbers of existing test drivers. If the integrated
-test drivers have a higher version number then the test drivers in the test
-driver directory, the old test drivers are deleted and the new test drivers
-are deployed and used.</p>
-</div>
-<div class="paragraph">
-<p>This mechanism allows to update test drivers without redeploying the whole web
-application.</p>
-</div>
-<div class="paragraph">
-<p>If you are either developing and testing a test driver without changing the
-version number or you are using a newer snapshot test driver, make sure the
-latest test driver is deployed into the test driver directory.</p>
-</div>
-<div class="paragraph">
-<p>This means that you need to manually overwrite the test driver or use the
-<code>gradle install</code> task in the test driver project. To correctly run the
-install task, you need to set the 'etf.td.deployment.dir' gradle property,
-for example in the settings.gradle or in the system gradle.properties.</p>
 </div>
 </div>
 </div>
@@ -523,6 +333,13 @@ Build-JDK: 1.8.0_102</pre>
 <div class="paragraph">
 <p>You can fix the problem by cloning the repository from GitHub using GIT.</p>
 </div>
+<div class="paragraph">
+<p>Q: I obtain different sizes in the war or jar files than the size of the released artifacts
+when I compile them in my environment.</p>
+</div>
+<div class="paragraph">
+<p>A: These differences result from several local system properties that are collected by the build system and included in the manifest file.</p>
+</div>
 <hr>
 <div class="paragraph small">
 <p><a href="https://www.interactive-instruments.de/en/about/impressum/">Legal Notice</a> | <a href="https://www.interactive-instruments.de/en/about/datenschutzerklarung/">Privacy Notice</a></p>
@@ -532,7 +349,7 @@ Build-JDK: 1.8.0_102</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-19 14:46:27 +0200
+Last updated 2022-08-24 22:22:58 +0200
 </div>
 </div>
 </body>
