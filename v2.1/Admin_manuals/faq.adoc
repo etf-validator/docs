@@ -1,0 +1,9 @@
+== FAQ
+
+Q: I get a `Module not found: de.interactive_instruments.etf.bsxm.GmlGeoX` error.
+
+A: [line-through]#You removed the file
+GmlGeox.jar from `etf\ds\db\repo\de\interactive_instruments\etf\bsxm`. You can
+fix the problem by (re-)installing the GmlGeoX module.# The issue occurred in
+previous versions. Update to the latest version and restart the application.
+The GmlGeoX module will be automatically reinstalled.

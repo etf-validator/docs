@@ -1,0 +1,27 @@
+= Introduction
+
+The ETF web interface enables the user to start, control, monitor tests
+and to inspect the test results. These task areas are reflected in the
+menu structure.
+
+[.thumb]
+image:../images/menu_etf_2-1.png["1.
+Menu"]
+
+In the *Esxecutable Test Suites* section all available (respectively installed) Executable Test
+Suites are listed. Within this section, an Executable Test Suite can be
+selected and run against a Test Object.
+
+NOTE: A Test Object can consists of one or multiple artifacts and can,
+for example, manifest multiple GML files or an entire system like a
+Web Feature Service.
+
+The *Status* section shows all tests that are currently executed on the
+system and enables to open a monitor view for single test runs.
+
+The *Test reports* section list the test results of completed test runs.
+
+The *Help* link refers to a help page. Unless otherwise set by the administrator,
+it refers to this page.
+
+Also there is a fifth view and it's the *Test Classes*, this one doesn't appear in the menu and it is the default one, the landing view.

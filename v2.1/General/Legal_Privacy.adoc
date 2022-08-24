@@ -1,0 +1,3 @@
+// GDPR: the domain etf-validator.net is managed by interactive instruments
+[.small]
+link:https://www.interactive-instruments.de/en/about/impressum/[Legal Notice] | link:https://www.interactive-instruments.de/en/about/datenschutzerklarung/[Privacy Notice]

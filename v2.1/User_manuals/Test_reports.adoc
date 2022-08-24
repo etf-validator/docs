@@ -1,0 +1,18 @@
+= Test Reports
+
+The Test Reports view shows all reports that have been generated from
+Test Runs.
+
+[.thumb]
+image:../images/screenshot_X.png["screenshot_X"]
+
+By clicking on the plus button information, about the start time, the
+test result status, the name of the Test Object and the used Test Suites
+is shown.
+
+A Test Report can be opened again by clicking on *Open report* or can be
+downloaded as HTML file by clicking on the *Download* button.
+
+The log file of the test run can be inspected with the *Open log*
+button. By clicking on *Delete report* button, the report will be
+deleted permanently.
