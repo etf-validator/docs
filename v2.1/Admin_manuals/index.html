@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>Administration of an ETF validator</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,7 +71,7 @@ Testing framework for spatial data and services</span></p></td>
 <h1 id="_administration_of_an_etf_validator" class="sect0">Administration of an ETF validator</h1>
 <div class="openblock partintro">
 <div class="content">
-<table class="tableblock frame-ends grid-none stretch">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 75%;">
@@ -224,7 +224,7 @@ Testing framework for spatial data and services</span></p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> (fallback <strong>%ALLUSERSPROFILE%\etf\td</strong> ) and will be used by ETF on startup.</p>
+<p>Each Test Driver can be installed in the <a href="https://docs.etf-validator.net/v2.1/Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
@@ -317,7 +317,7 @@ To stop the process use <strong>CTRL+C</strong>.
 </ul>
 </div>
 <div class="paragraph">
-<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
+<p>Each Test Driver can be installed in the <a href="https://docs.etf-validator.net/v2.1/Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
 </div>
 <div class="paragraph">
 <p>Copy the etf-webapp.war file to <strong>JETTY_HOME/webapps</strong> or if you have created a JETTY_BASE, then copy the etf-webapp.war file to <strong>JETTY_BASE/webapps</strong>.</p>
@@ -622,19 +622,6 @@ etf.webapp.base.url = http://localhost:8080/etf-webapp
 figure shows an example structure, identifiers or version numbers may be
 different in your setup.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When ETF is started from a docker image not all directories are mounted
-on the host.
-</td>
-</tr>
-</table>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/etf-data-dir.png" alt="ETF data directory">
@@ -785,7 +772,7 @@ The GmlGeoX module will be automatically reinstalled.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-24 22:33:25 +0200
+Last updated 2022-10-04 09:10:55 +0200
 </div>
 </div>
 </body>

@@ -209,9 +209,6 @@ This chapter describes the structure of the ETF data directory. The following
 figure shows an example structure, identifiers or version numbers may be
 different in your setup.
 
-NOTE: When ETF is started from a docker image not all directories are mounted
-on the host.
-
 .ETF data directory
 image::../images/etf-data-dir.png[ETF data directory]
 
