@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Building ETF</title>
+<title>Debugging ETF</title>
 <link rel="stylesheet" href="../stylesheets/etf.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -15,15 +15,16 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of contents</div>
 <ul class="sectlevel0">
-<li><a href="#_building_etf">Building ETF</a>
+<li><a href="#_debugging_etf">Debugging ETF</a>
 <ul class="sectlevel1">
 <li><a href="#_changelog">Changelog</a></li>
 <li><a href="#_about_etf">About ETF</a></li>
 <li><a href="#_prerequisites">Prerequisites</a></li>
 <li><a href="#_cloning_the_source_code">Cloning the source code</a></li>
-<li><a href="#_compiling_the_source_code">Compiling the source code</a></li>
-<li><a href="#_using_test_drivers_with_the_web_application">Using test drivers with the web application</a></li>
-<li><a href="#_faq">FAQ</a></li>
+<li><a href="#_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</a></li>
+<li><a href="#_debugging_using_intellij">Debugging using IntelliJ</a></li>
+<li><a href="#_adding_the_ets_repository">Adding the ETS repository</a></li>
+<li><a href="#_how_to_use">How to use</a></li>
 </ul>
 </li>
 </ul>
@@ -47,7 +48,7 @@ Testing framework for spatial data and services</span></p></td>
 </table>
 </div>
 </div>
-<h1 id="_building_etf" class="sect0">Building ETF</h1>
+<h1 id="_debugging_etf" class="sect0">Debugging ETF</h1>
 <div class="openblock partintro">
 <div class="content">
 <table class="tableblock frame-topbot grid-none stretch">
@@ -62,15 +63,15 @@ Testing framework for spatial data and services</span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-02-01</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This manual describes how to build the ETF validator. Knowledge about maven, maven repositories and build management tools are required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This manual describes how to remotely debug the components of ETF</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Target audience</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developers planning to build the ETF validator themselves</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers planning to debug the ETF validator themselves</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
@@ -106,29 +107,9 @@ Testing framework for spatial data and services</span></p></td>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-05-02</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">document created</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-06-21</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clemens Portele</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">editorial updates</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-07-12</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test driver development section</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-02-01</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Updated to v2.1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2022-08-24</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jon Herrmann</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">some changes, approved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document created</p></td>
 </tr>
 </tbody>
 </table>
@@ -163,14 +144,10 @@ Testing framework for spatial data and services</span></p></td>
 <p><a href="https://jdk.java.net/archive/">OpenJDK 11 is installed</a></p>
 </li>
 <li>
-<p>Ensure JAVA_HOME environment variable is set</p>
+<p>IntelliJ instaled</p>
 </li>
 <li>
 <p><a href="https://git-scm.com/downloads">Git installed</a></p>
-</li>
-<li>
-<p>For debugging: an IDE with the corresponding plugins
-for an web application server (for instance <a href="https://plugins.jetbrains.com/plugin/18721-jetty">this IntelliJ plugin</a> or <a href="https://marketplace.eclipse.org/content/eclipse-jetty">this plugin for Eclipse</a>). Or you install an web application server and connect via an open debug port.</p>
 </li>
 </ul>
 </div>
@@ -194,7 +171,7 @@ for an web application server (for instance <a href="https://plugins.jetbrains.c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the next branch contains the latests developments.
+The next branch contains the latests developments.
 </td>
 </tr>
 </table>
@@ -202,18 +179,37 @@ the next branch contains the latests developments.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_compiling_the_source_code">Compiling the source code</h2>
+<h2 id="_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ETF uses <a href="https://gradle.org">Gradle</a> as build management tool. The gradle
-wrapper script will automatically download the required Gradle version and
-start the build process afterwards.</p>
+<p>First, we have to open Intellij. Once there, we have to follow these instructions to create a project with etf-webapp:</p>
 </div>
 <div class="paragraph">
-<p>Dependencies are currently downloaded from the interactive instruments repositories.
-Currently only the snapshot repository can be accessed with the credentials
-etf-public-dev / etf-public-dev . This is automatically done by
-default.</p>
+<p>Open the tab file &#8594; select new.. &#8594; open project from existing sources &#8594; select the etf-webapp project</p>
+</div>
+<div class="paragraph">
+<p>Once selected it will appear a new window in which you have to select import project from external model and gradle and continue</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/import-project-IJ.png" alt="import project IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>At this moment you should be seeing the readme. Now we will make the run configuration file.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/readme-IJ.png" alt="readme IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>First, open the dropdown menu in which appear by default "Current File", and select "Edit Configurations&#8230;&#8203;"</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/current-file-IJ.png" alt="current file IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>When the new window appear  click in add new and select Smart tomcat once there fill it like in the next example</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/run-configuration-file-IJ.png" alt="run configuration file IJ"></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -222,42 +218,36 @@ default.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>The artifact repository to be used is determined from the version.properties file.
-Make sure the version is suffixed with "-SNAPSHOT". If necessary, change the
-version in the version.properties file, for example to:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>version = 2.1.0-SNAPSHOT</pre>
-</div>
-</div>
+Vm options: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 </td>
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="title">On a Windows command line run</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-webapp&gt; gradlew.bat build war</code></pre>
+<div class="paragraph">
+<p>Now we have to select the jdk for our project. For thet we have to follow these instructions:</p>
 </div>
+<div class="paragraph">
+<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 11</p>
 </div>
-<div class="listingblock">
-<div class="title">On Linux execute</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ ./gradlew build war</code></pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to test it you can run it with this configuration and it should work localhost:8080/etf-webapp
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_test_drivers_with_the_web_application">Using test drivers with the web application</h2>
+<h2 id="_debugging_using_intellij">Debugging using IntelliJ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each Test Driver can be installed in the <a href="Admin_manuals/index.html#_etf_data_directory_structure">test driver directory</a> and will be used by ETF on startup.</p>
-</div>
-<div class="paragraph">
-<p>To build the test drivers the following repositories need to be cloned:</p>
+<p>To debug the test drivers, first they have to be cloned from the following links:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -273,19 +263,16 @@ version in the version.properties file, for example to:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Test drivers then should be built with the following commands (replace the TMP with you test driver directory):</p>
+<p>Test drivers then should be put in a IntelliJ project (It must be a different one than the one running etf-webapp) so we have to follow similar instructions than with etf-webapp:</p>
 </div>
-<div class="listingblock">
-<div class="title">On a Windows command line run</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cmd">C:\etf-testdriver&gt; gradlew.bat -Petf.td.deployment.dir="C:\TMP" build install</code></pre>
+<div class="paragraph">
+<p>Open the tab file &#8594; select new.. &#8594; open project from existing sources &#8594; select the testdriver project (Select only one of them)</p>
 </div>
+<div class="paragraph">
+<p>And once is created we have to create a new run configuration file. This time we have to create one selecting remote jvm debug and filled it like in the followin example:</p>
 </div>
-<div class="listingblock">
-<div class="title">On Linux execute</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="bash">$ gradlew.bat -Petf.td.deployment.dir="/TMP" build install</code></pre>
-</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/debug-configuration-file-IJ.png" alt="debug configuration file IJ"></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -294,51 +281,50 @@ version in the version.properties file, for example to:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If your git client changes the line endings, your need to add the
-"spotlessApply" task to the build commands.
+In Command line arguments for remote JVM, you have to put the same as in vm options of the webapp
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Now we have to select the jdk for our project. For thet we have to follow the same instructions as in the etf-webapp module:</p>
+</div>
+<div class="paragraph">
+<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 11</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_faq">FAQ</h2>
+<h2 id="_adding_the_ets_repository">Adding the ETS repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Q: I get a <code>repository not found</code> error.</p>
+<p>First you have to download the ETS repository from one <a href="https://github.com/INSPIRE-MIF/helpdesk-validator/releases">release</a> and extract it.</p>
 </div>
 <div class="paragraph">
-<p>A: The error occurs for example if the source code has been downloaded and not
-cloned with GIT -or the directory has been copied without the hidden .git
-directory. The build helper script (etf-bda) collects information from the
-locally cloned GIT repository and includes the property <code>Implementation-Revision</code>
-in the manifest file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Manifest-Version: 1.0
-Build-Date: 170601013212
-Implementation-Version: 2.0.0
-Build-Gradle: 3.5
-Build-ii-bda: 1.0.24.1
-Implementation-Revision: abf509f
-Source-Compatibility: 1.8
-Implementation-Build: 0
-Build-Host: JAX
-Build-User: herrmann
-Build-JDK: 1.8.0_102</pre>
-</div>
+<p>Then you have to run the etf-webapp once because it will create a folder called ".etf". Inside of it, you will find some folders, and in the projects folder you will have to copy the extracted files from the already extracted ETS repository.</p>
 </div>
 <div class="paragraph">
-<p>You can fix the problem by cloning the repository from GitHub using GIT.</p>
+<p>Now, when you run again the etf-webapp you will find all the ETS to start testing.</p>
 </div>
-<div class="paragraph">
-<p>Q: I obtain different sizes in the war or jar files than the size of the released artifacts
-when I compile them in my environment.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_use">How to use</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>A: These differences result from several local system properties that are collected by the build system and included in the manifest file.</p>
+<p>First, we have to have both projects opened in different windows, run the webapp, debug in the other window and it should work.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If u want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
+</td>
+</tr>
+</table>
 </div>
 <hr>
 <div class="paragraph small">
@@ -349,7 +335,7 @@ when I compile them in my environment.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-01 09:34:13 +0100
+Last updated 2023-02-01 13:15:38 +0100
 </div>
 </div>
 </body>
