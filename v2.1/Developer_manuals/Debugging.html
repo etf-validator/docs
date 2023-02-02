@@ -23,7 +23,7 @@
 <li><a href="#_cloning_the_source_code">Cloning the source code</a></li>
 <li><a href="#_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</a></li>
 <li><a href="#_debugging_using_intellij">Debugging using IntelliJ</a></li>
-<li><a href="#_adding_the_ets_repository">Adding the ETS repository</a></li>
+<li><a href="#_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</a></li>
 <li><a href="#_how_to_use">How to use</a></li>
 </ul>
 </li>
@@ -290,18 +290,33 @@ In Command line arguments for remote JVM, you have to put the same as in vm opti
 <p>Now we have to select the jdk for our project. For thet we have to follow the same instructions as in the etf-webapp module:</p>
 </div>
 <div class="paragraph">
-<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 11</p>
+<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 1.8</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ, it is also possible to use different SDKs in different modules, in case you need it.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_adding_the_ets_repository">Adding the ETS repository</h2>
+<h2 id="_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>First you have to download the ETS repository from one <a href="https://github.com/INSPIRE-MIF/helpdesk-validator/releases">release</a> and extract it.</p>
 </div>
 <div class="paragraph">
 <p>Then you have to run the etf-webapp once because it will create a folder called ".etf". Inside of it, you will find some folders, and in the projects folder you will have to copy the extracted files from the already extracted ETS repository.</p>
+</div>
+<div class="paragraph">
+<p>Next, you have to put the testdrivers in td/lib/ to make them work and to have the collection of Executable Test Suites when you run the ETF-Webapp.</p>
 </div>
 <div class="paragraph">
 <p>Now, when you run again the etf-webapp you will find all the ETS to start testing.</p>
@@ -321,7 +336,7 @@ In Command line arguments for remote JVM, you have to put the same as in vm opti
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If u want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
+If you want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
 </td>
 </tr>
 </table>
@@ -335,7 +350,7 @@ If u want to debug another test driver or anything contained you just need to ad
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-01 13:15:38 +0100
+Last updated 2023-02-02 12:43:02 +0100
 </div>
 </div>
 </body>

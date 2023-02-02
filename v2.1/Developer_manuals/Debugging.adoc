@@ -116,14 +116,18 @@ NOTE: In Command line arguments for remote JVM, you have to put the same as in v
 
 Now we have to select the jdk for our project. For thet we have to follow the same instructions as in the etf-webapp module:
 
-Open the tab file -> select Project structure -> SDK option will appear as no SDK -> select the SDK version 11
+Open the tab file -> select Project structure -> SDK option will appear as no SDK -> select the SDK version 1.8
+
+NOTE: You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ, it is also possible to use different SDKs in different modules, in case you need it. 
 
 
-== Adding the ETS repository
+== Adding the ETS repository and testdrivers
 
 First you have to download the ETS repository from one link:https://github.com/INSPIRE-MIF/helpdesk-validator/releases[release] and extract it.
 
 Then you have to run the etf-webapp once because it will create a folder called ".etf". Inside of it, you will find some folders, and in the projects folder you will have to copy the extracted files from the already extracted ETS repository. 
+
+Next, you have to put the testdrivers in td/lib/ to make them work and to have the collection of Executable Test Suites when you run the ETF-Webapp.
 
 Now, when you run again the etf-webapp you will find all the ETS to start testing.
 
@@ -134,7 +138,7 @@ First, we have to have both projects opened in different windows, run the webapp
 
 
 
-NOTE: If u want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
+NOTE: If you want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
 
 
 ***
