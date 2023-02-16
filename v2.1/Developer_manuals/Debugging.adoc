@@ -49,9 +49,10 @@ include::../General/About-short.adoc[]
 == Prerequisites
 
 - link:https://jdk.java.net/archive/[OpenJDK 11 is installed]
-- IntelliJ instaled
 - link:https://git-scm.com/downloads[Git installed]
- 
+- link:https://tomcat.apache.org/download-90.cgi[Apache Tomcat 9 installed]
+- IntelliJ installed
+- Smart Tomcat plugin installed in IntelliJ
 
 == Cloning the source code
 
