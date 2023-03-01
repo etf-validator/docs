@@ -21,8 +21,20 @@
 <li><a href="#_about_etf">About ETF</a></li>
 <li><a href="#_prerequisites">Prerequisites</a></li>
 <li><a href="#_cloning_the_source_code">Cloning the source code</a></li>
-<li><a href="#_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</a></li>
-<li><a href="#_debugging_using_intellij">Debugging using IntelliJ</a></li>
+<li><a href="#_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_the_project">Creating the project</a></li>
+<li><a href="#_creating_a_run_configuration_file_etf_webapp">Creating a run configuration file (etf-webapp)</a></li>
+<li><a href="#_modifying_the_jdk_used">Modifying the JDK used</a></li>
+</ul>
+</li>
+<li><a href="#_debugging_using_intellij">Debugging using IntelliJ</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_a_project_for_the_testdrivers">Creating a project for the testdrivers</a></li>
+<li><a href="#_creating_a_run_configuration_file">Creating a run configuration file</a></li>
+<li><a href="#_modifying_the_jdk_used_2">Modifying the JDK used</a></li>
+</ul>
+</li>
 <li><a href="#_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</a></li>
 <li><a href="#_how_to_use">How to use</a></li>
 </ul>
@@ -177,7 +189,7 @@ Testing framework for spatial data and services</span></p></td>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The next branch contains the latests developments.
+The next branch contains the latest developments.
 </td>
 </tr>
 </table>
@@ -187,32 +199,63 @@ The next branch contains the latests developments.
 <div class="sect1">
 <h2 id="_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_the_project">Creating the project</h3>
 <div class="paragraph">
-<p>First, we have to open Intellij. Once there, we have to follow these instructions to create a project with etf-webapp:</p>
+<p>Open Intellij.</p>
 </div>
 <div class="paragraph">
-<p>Open the tab file &#8594; select new.. &#8594; open project from existing sources &#8594; select the etf-webapp project</p>
+<p>Open the "File" tab.</p>
 </div>
 <div class="paragraph">
-<p>Once selected it will appear a new window in which you have to select import project from external model and gradle and continue</p>
+<p>Select "New".</p>
+</div>
+<div class="paragraph">
+<p>Open "Project from existing sources&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p>Select the etf-webapp project.</p>
+</div>
+<div class="paragraph">
+<p>Select the following options in the new window that appeared:
+- Import project from external model
+- Gradle</p>
+</div>
+<div class="paragraph">
+<p>Press continue.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/import-project-IJ.png" alt="import project IJ"></span></p>
 </div>
 <div class="paragraph">
-<p>At this moment you should be seeing the readme. Now we will make the run configuration file.</p>
+<p>At this moment, the README should have been displayed in the window.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/readme-IJ.png" alt="readme IJ"></span></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_run_configuration_file_etf_webapp">Creating a run configuration file (etf-webapp)</h3>
 <div class="paragraph">
-<p>First, open the dropdown menu in which appear by default "Current File", and select "Edit Configurations&#8230;&#8203;"</p>
+<p>Open the dropdown menu, in which appear by default "Current File".</p>
+</div>
+<div class="paragraph">
+<p>Select "Edit Configurations&#8230;&#8203;".</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/current-file-IJ.png" alt="current file IJ"></span></p>
 </div>
 <div class="paragraph">
-<p>When the new window appear  click in add new and select Smart tomcat once there fill it like in the next example</p>
+<p>A new window will appear.</p>
+</div>
+<div class="paragraph">
+<p>Click add new.</p>
+</div>
+<div class="paragraph">
+<p>Select Smart tomcat.</p>
+</div>
+<div class="paragraph">
+<p>Fill it in like in the next example.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/run-configuration-file-IJ.png" alt="run configuration file IJ"></span></p>
@@ -229,11 +272,20 @@ Vm options: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_the_jdk_used">Modifying the JDK used</h3>
 <div class="paragraph">
-<p>Now we have to select the jdk for our project. For thet we have to follow these instructions:</p>
+<p>Open the "File" tab.</p>
 </div>
 <div class="paragraph">
-<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 11</p>
+<p>Select "Project structure"</p>
+</div>
+<div class="paragraph">
+<p>SDK option will appear as no SDK</p>
+</div>
+<div class="paragraph">
+<p>Select the SDK version 11</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -242,18 +294,21 @@ Vm options: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you want to test it you can run it with this configuration and it should work localhost:8080/etf-webapp
+If you want to test it out, you can run it with this configuration, and it should work in localhost:8080/etf-webapp
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_debugging_using_intellij">Debugging using IntelliJ</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_a_project_for_the_testdrivers">Creating a project for the testdrivers</h3>
 <div class="paragraph">
-<p>To debug the test drivers, first they have to be cloned from the following links:</p>
+<p>Clone the testdrivers from the following links:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -269,13 +324,43 @@ If you want to test it you can run it with this configuration and it should work
 </ul>
 </div>
 <div class="paragraph">
-<p>Test drivers then should be put in a IntelliJ project (It must be a different one than the one running etf-webapp) so we have to follow similar instructions than with etf-webapp:</p>
+<p>Open IntelliJ.</p>
 </div>
 <div class="paragraph">
-<p>Open the tab file &#8594; select new.. &#8594; open project from existing sources &#8594; select the testdriver project (Select only one of them)</p>
+<p>Open the "File" tab.</p>
 </div>
 <div class="paragraph">
-<p>And once is created we have to create a new run configuration file. This time we have to create one selecting remote jvm debug and filled it like in the followin example:</p>
+<p>Select "New"</p>
+</div>
+<div class="paragraph">
+<p>Open project from existing sources</p>
+</div>
+<div class="paragraph">
+<p>Select the testdriver project (Select only one of them)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_run_configuration_file">Creating a run configuration file</h3>
+<div class="paragraph">
+<p>Open the dropdown menu, in which appear by default "Current File".</p>
+</div>
+<div class="paragraph">
+<p>Select "Edit Configurations&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/current-file-IJ.png" alt="current file IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>A new window will appear.</p>
+</div>
+<div class="paragraph">
+<p>Click in "Add new".</p>
+</div>
+<div class="paragraph">
+<p>Select "Remote JVM Debug".</p>
+</div>
+<div class="paragraph">
+<p>Fill it in like in the following example:</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/debug-configuration-file-IJ.png" alt="debug configuration file IJ"></span></p>
@@ -292,11 +377,20 @@ In Command line arguments for remote JVM, you have to put the same as in vm opti
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_the_jdk_used_2">Modifying the JDK used</h3>
 <div class="paragraph">
-<p>Now we have to select the jdk for our project. For thet we have to follow the same instructions as in the etf-webapp module:</p>
+<p>Open the "File" tab.</p>
 </div>
 <div class="paragraph">
-<p>Open the tab file &#8594; select Project structure &#8594; SDK option will appear as no SDK &#8594; select the SDK version 1.8</p>
+<p>Select "Project structure"</p>
+</div>
+<div class="paragraph">
+<p>SDK option will appear as no SDK</p>
+</div>
+<div class="paragraph">
+<p>Select the SDK version 11</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -312,20 +406,33 @@ You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ,
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>First you have to download the ETS repository from one <a href="https://github.com/INSPIRE-MIF/helpdesk-validator/releases">release</a> and extract it.</p>
+<p>Download the ETS repository from the <a href="https://github.com/INSPIRE-MIF/helpdesk-validator/releases">release</a></p>
 </div>
 <div class="paragraph">
-<p>Then you have to run the etf-webapp once because it will create a folder called ".etf". Inside of it, you will find some folders, and in the projects folder you will have to copy the extracted files from the already extracted ETS repository.</p>
+<p>Extract it.</p>
 </div>
 <div class="paragraph">
-<p>Next, you have to put the testdrivers in td/lib/ to make them work and to have the collection of Executable Test Suites when you run the ETF-Webapp.</p>
+<p>Run the etf-webapp once.</p>
 </div>
 <div class="paragraph">
-<p>Now, when you run again the etf-webapp you will find all the ETS to start testing.</p>
+<p>It will create a folder called ".etf".</p>
+</div>
+<div class="paragraph">
+<p>Copy the extracted files in the "projects" folder, inside ".etf".</p>
+</div>
+<div class="paragraph">
+<p>Put the testdrivers in td/lib/</p>
+</div>
+<div class="paragraph">
+<p>Run again the etf-webapp.</p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll find all the ETS inside now.</p>
 </div>
 </div>
 </div>
@@ -333,7 +440,13 @@ You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ,
 <h2 id="_how_to_use">How to use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>First, we have to have both projects opened in different windows, run the webapp, debug in the other window and it should work.</p>
+<p>Open both projects in different windows</p>
+</div>
+<div class="paragraph">
+<p>Run the etf-webapp</p>
+</div>
+<div class="paragraph">
+<p>Debug in the testdrivers project.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -342,7 +455,7 @@ You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ,
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
+If you want to debug another test driver or anything contained, you just need to add a new module with the contents of the project you want to debug in the project with the testdrivers.
 </td>
 </tr>
 </table>
@@ -356,7 +469,7 @@ If you want to debug another test driver or anything contained you just need to 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-16 09:38:04 +0100
+Last updated 2023-03-01 11:29:00 +0100
 </div>
 </div>
 </body>

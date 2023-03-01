@@ -63,83 +63,150 @@ Clone the Source code from the link:https://github.com/etf-validator/etf-webapp[
 git clone -b next https://github.com/etf-validator/etf-webapp.git
 ----
 
-NOTE: The next branch contains the latests developments.
+NOTE: The next branch contains the latest developments.
 
 == Using IntelliJ to run the etf-webapp
 
-First, we have to open Intellij. Once there, we have to follow these instructions to create a project with etf-webapp:
+=== Creating the project 
 
-Open the tab file -> select new.. -> open project from existing sources -> select the etf-webapp project 
+Open Intellij. 
 
+Open the "File" tab.
 
-Once selected it will appear a new window in which you have to select import project from external model and gradle and continue
+Select "New".
+
+Open "Project from existing sources...". 
+
+Select the etf-webapp project.
+
+Select the following options in the new window that appeared:
+- Import project from external model
+- Gradle 
+
+Press continue.
+
 
 image:../images/import-project-IJ.png[]
 
-At this moment you should be seeing the readme. Now we will make the run configuration file. 
+At this moment, the README should have been displayed in the window. 
 
 image:../images/readme-IJ.png[]
 
-First, open the dropdown menu in which appear by default "Current File", and select "Edit Configurations..."
+=== Creating a run configuration file (etf-webapp)
+
+Open the dropdown menu, in which appear by default "Current File".
+
+Select "Edit Configurations...".
 
 image:../images/current-file-IJ.png[]
 
-When the new window appear  click in add new and select Smart tomcat once there fill it like in the next example
+A new window will appear.
+
+Click add new.
+
+Select Smart tomcat.
+
+Fill it in like in the next example.
 
 image:../images/run-configuration-file-IJ.png[]
 
 NOTE: Vm options: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 
-Now we have to select the jdk for our project. For thet we have to follow these instructions:
+=== Modifying the JDK used
 
-Open the tab file -> select Project structure -> SDK option will appear as no SDK -> select the SDK version 11
+Open the "File" tab.
 
-NOTE: If you want to test it you can run it with this configuration and it should work localhost:8080/etf-webapp
+Select "Project structure"
+
+SDK option will appear as no SDK 
+
+Select the SDK version 11
+
+NOTE: If you want to test it out, you can run it with this configuration, and it should work in localhost:8080/etf-webapp
 
 
 == Debugging using IntelliJ
 
-To debug the test drivers, first they have to be cloned from the following links:
+=== Creating a project for the testdrivers
+
+Clone the testdrivers from the following links:
 
 - link:https://github.com/etf-validator/etf-bsxtd.git[etf-bsxtd] ETF test driver for running BaseX XQuery based test projects
 - link:https://github.com/etf-validator/etf-tetd.git[etf-tetd] ETF test driver for executing Test Suites on a remote OGC TEAM Engine instance
 - link:https://github.com/etf-validator/etf-suitd.git[etf-suitd] ETF test driver for running SoapUI based test projects
 
-Test drivers then should be put in a IntelliJ project (It must be a different one than the one running etf-webapp) so we have to follow similar instructions than with etf-webapp:
+Open IntelliJ.
 
-Open the tab file -> select new.. -> open project from existing sources -> select the testdriver project (Select only one of them)
+Open the "File" tab.
 
-And once is created we have to create a new run configuration file. This time we have to create one selecting remote jvm debug and filled it like in the followin example:
+Select "New"
+
+Open project from existing sources 
+
+Select the testdriver project (Select only one of them)
+
+=== Creating a run configuration file
+
+Open the dropdown menu, in which appear by default "Current File".
+
+Select "Edit Configurations...".
+
+image:../images/current-file-IJ.png[]
+
+A new window will appear.
+
+Click in "Add new".
+
+Select "Remote JVM Debug".
+
+Fill it in like in the following example:
 
 image:../images/debug-configuration-file-IJ.png[]
 
 NOTE: In Command line arguments for remote JVM, you have to put the same as in vm options of the webapp
 
-Now we have to select the jdk for our project. For thet we have to follow the same instructions as in the etf-webapp module:
 
-Open the tab file -> select Project structure -> SDK option will appear as no SDK -> select the SDK version 1.8
+=== Modifying the JDK used
+
+Open the "File" tab.
+
+Select "Project structure"
+
+SDK option will appear as no SDK 
+
+Select the SDK version 11
 
 NOTE: You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ, it is also possible to use different SDKs in different modules, in case you need it. 
 
 
 == Adding the ETS repository and testdrivers
 
-First you have to download the ETS repository from one link:https://github.com/INSPIRE-MIF/helpdesk-validator/releases[release] and extract it.
+Download the ETS repository from the link:https://github.com/INSPIRE-MIF/helpdesk-validator/releases[release] 
 
-Then you have to run the etf-webapp once because it will create a folder called ".etf". Inside of it, you will find some folders, and in the projects folder you will have to copy the extracted files from the already extracted ETS repository. 
+Extract it.
 
-Next, you have to put the testdrivers in td/lib/ to make them work and to have the collection of Executable Test Suites when you run the ETF-Webapp.
+Run the etf-webapp once.
 
-Now, when you run again the etf-webapp you will find all the ETS to start testing.
+It will create a folder called ".etf".
+
+Copy the extracted files in the "projects" folder, inside ".etf". 
+
+Put the testdrivers in td/lib/ 
+
+Run again the etf-webapp.
+
+You'll find all the ETS inside now.
 
 == How to use
 
-First, we have to have both projects opened in different windows, run the webapp, debug in the other window and it should work.
+Open both projects in different windows
+
+Run the etf-webapp
+
+Debug in the testdrivers project.
 
 
-
-
-NOTE: If you want to debug another test driver or anything contained you just need to add a new module with the contents of the project you want to debug.
+NOTE: If you want to debug another test driver or anything contained, you just need to add a new module with the contents of the project you want to debug in the project with the testdrivers.
 
 
 ***
