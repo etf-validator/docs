@@ -48,7 +48,7 @@ include::../General/About-short.adoc[]
 
 == Prerequisites
 
-- link:https://jdk.java.net/archive/[OpenJDK 11 is installed]
+- link:https://jdk.java.net/archive/[OpenJDK 11 installed]
 - link:https://git-scm.com/downloads[Git installed]
 - link:https://tomcat.apache.org/download-90.cgi[Apache Tomcat 9 installed]
 - IntelliJ installed
@@ -56,7 +56,7 @@ include::../General/About-short.adoc[]
 
 == Cloning the source code
 
-Clone the Source code from the link:https://github.com/etf-validator/etf-webapp[GitHub repository].
+Clone the source code from the link:https://github.com/etf-validator/etf-webapp[GitHub repository].
 
 [source,bash]
 ----
@@ -79,7 +79,7 @@ Open "Project from existing sources...".
 
 Select the etf-webapp project.
 
-Select the following options in the new window that appeared:
+Select the following options in the window that appears:
 - Import project from external model
 - Gradle 
 
@@ -88,19 +88,19 @@ Press continue.
 
 image:../images/import-project-IJ.png[]
 
-At this moment, the README should have been displayed in the window. 
+At this moment, the README should be displayed in the window. 
 
 image:../images/readme-IJ.png[]
 
 === Creating a run configuration file (etf-webapp)
 
-Open the dropdown menu, in which appear by default "Current File".
+Open the dropdown menu, in which by default "Current File" appears.
 
 Select "Edit Configurations...".
 
 image:../images/current-file-IJ.png[]
 
-A new window will appear.
+A new window appears.
 
 Click add new.
 
@@ -118,9 +118,9 @@ Open the "File" tab.
 
 Select "Project structure"
 
-SDK option will appear as no SDK 
+SDK option appears as no SDK.
 
-Select the SDK version 11
+Select the SDK version 11.
 
 NOTE: If you want to test it out, you can run it with this configuration, and it should work in localhost:8080/etf-webapp
 
@@ -139,15 +139,15 @@ Open IntelliJ.
 
 Open the "File" tab.
 
-Select "New"
+Select "New".
 
-Open project from existing sources 
+Open project from existing sources.
 
-Select the testdriver project (Select only one of them)
+Select the testdriver project (select only one of them).
 
 === Creating a run configuration file
 
-Open the dropdown menu, in which appear by default "Current File".
+Open the dropdown menu, in which by default "Current File" appears.
 
 Select "Edit Configurations...".
 
@@ -155,7 +155,7 @@ image:../images/current-file-IJ.png[]
 
 A new window will appear.
 
-Click in "Add new".
+Click "Add new".
 
 Select "Remote JVM Debug".
 
@@ -170,18 +170,18 @@ NOTE: In Command line arguments for remote JVM, you have to put the same as in v
 
 Open the "File" tab.
 
-Select "Project structure"
+Select "Project structure".
 
-SDK option will appear as no SDK 
+SDK option will appear as no SDK.
 
-Select the SDK version 11
+Select the SDK version 11.
 
 NOTE: You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ, it is also possible to use different SDKs in different modules, in case you need it. 
 
 
 == Adding the ETS repository and testdrivers
 
-Download the ETS repository from the link:https://github.com/INSPIRE-MIF/helpdesk-validator/releases[release] 
+Download the ETS repository from the link:https://github.com/INSPIRE-MIF/helpdesk-validator/releases[release].
 
 Extract it.
 
@@ -191,17 +191,17 @@ It will create a folder called ".etf".
 
 Copy the extracted files in the "projects" folder, inside ".etf". 
 
-Put the testdrivers in td/lib/ 
+Put the testdrivers in td/lib/.
 
 Run again the etf-webapp.
 
-You'll find all the ETS inside now.
+You will find all the ETS inside now.
 
 == How to use
 
-Open both projects in different windows
+Open both projects in different windows.
 
-Run the etf-webapp
+Run the etf-webapp.
 
 Debug in the testdrivers project.
 
