@@ -54,7 +54,7 @@ toc::[]
 include::../General/About-short.adoc[]
 
 :numbered:
-include::Introduction.adoc[]
+include::introduction.adoc[]
 
 include::Metadata.adoc[]
 

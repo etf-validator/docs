@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Debugging ETF</title>
+<link rel="stylesheet" href="../stylesheets/etf.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" />
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of contents</div>
+<ul class="sectlevel0">
+<li><a href="#_debugging_etf">Debugging ETF</a>
+<ul class="sectlevel1">
+<li><a href="#_changelog">Changelog</a></li>
+<li><a href="#_about_etf">About ETF</a></li>
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_cloning_the_source_code">Cloning the source code</a></li>
+<li><a href="#_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_the_project">Creating the project</a></li>
+<li><a href="#_creating_a_run_configuration_file_etf_webapp">Creating a run configuration file (etf-webapp)</a></li>
+<li><a href="#_modifying_the_jdk_used">Modifying the JDK used</a></li>
+</ul>
+</li>
+<li><a href="#_debugging_using_intellij">Debugging using IntelliJ</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_a_project_for_the_testdrivers">Creating a project for the testdrivers</a></li>
+<li><a href="#_creating_a_run_configuration_file">Creating a run configuration file</a></li>
+<li><a href="#_modifying_the_jdk_used_2">Modifying the JDK used</a></li>
+</ul>
+</li>
+<li><a href="#_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</a></li>
+<li><a href="#_how_to_use">How to use</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<table class="tableblock frame-none grid-none stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><a class="image" href="http://www.etf-validator.net"><img src="http://docs.etf-validator.net/v2.0/images/ETF_logo.png" alt="ETF Logo" width="125"></a></span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="etf_headline"><strong>ETF</strong><br>
+Testing framework for spatial data and services</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h1 id="_debugging_etf" class="sect0">Debugging ETF</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-topbot grid-none stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">approved</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-02-01</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This manual describes how to remotely debug the components of ETF</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Target audience</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers planning to debug the ETF validator themselves</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution (cc-by) 4.0</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Identifier</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.etf-validator.net/v2.0/Developer_manuals/Building.html" class="bare">https://docs.etf-validator.net/v2.0/Developer_manuals/Building.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Language</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_changelog">Changelog</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Date</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Editor</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Comments</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-02-01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Guadaltel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document created</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<!-- toc disabled -->
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_etf">About ETF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://etf-validator.net">ETF</a> is an open source testing framework for validating spatial data, metadata and web services in Spatial Data Infrastructures (SDIs). It can be used via a responsive web application or via a REST API.</p>
+</div>
+<div class="paragraph">
+<p>The design of ETF is driven by three goals: be user-friendly, consistent with the standards and capable of testing all resources in an SDI.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.interactive-instruments.de/">interactive instruments</a> has developed ETF and is the primary maintainer of the software.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://docs.etf-validator.net/">More documentation about ETF&#8230;&#8203;</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jdk.java.net/archive/">OpenJDK 11 is installed</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/downloads">Git installed</a></p>
+</li>
+<li>
+<p><a href="https://tomcat.apache.org/download-90.cgi">Apache Tomcat 9 installed</a></p>
+</li>
+<li>
+<p>IntelliJ installed</p>
+</li>
+<li>
+<p>Smart Tomcat plugin installed in IntelliJ</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cloning_the_source_code">Cloning the source code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clone the Source code from the <a href="https://github.com/etf-validator/etf-webapp">GitHub repository</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="bash">git clone -b next https://github.com/etf-validator/etf-webapp.git</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The next branch contains the latest developments.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_intellij_to_run_the_etf_webapp">Using IntelliJ to run the etf-webapp</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_the_project">Creating the project</h3>
+<div class="paragraph">
+<p>Open Intellij.</p>
+</div>
+<div class="paragraph">
+<p>Open the "File" tab.</p>
+</div>
+<div class="paragraph">
+<p>Select "New".</p>
+</div>
+<div class="paragraph">
+<p>Open "Project from existing sources&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p>Select the etf-webapp project.</p>
+</div>
+<div class="paragraph">
+<p>Select the following options in the new window that appeared:
+- Import project from external model
+- Gradle</p>
+</div>
+<div class="paragraph">
+<p>Press continue.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/import-project-IJ.png" alt="import project IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>At this moment, the README should have been displayed in the window.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/readme-IJ.png" alt="readme IJ"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_run_configuration_file_etf_webapp">Creating a run configuration file (etf-webapp)</h3>
+<div class="paragraph">
+<p>Open the dropdown menu, in which appear by default "Current File".</p>
+</div>
+<div class="paragraph">
+<p>Select "Edit Configurations&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/current-file-IJ.png" alt="current file IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>A new window will appear.</p>
+</div>
+<div class="paragraph">
+<p>Click add new.</p>
+</div>
+<div class="paragraph">
+<p>Select Smart tomcat.</p>
+</div>
+<div class="paragraph">
+<p>Fill it in like in the next example.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/run-configuration-file-IJ.png" alt="run configuration file IJ"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vm options: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_the_jdk_used">Modifying the JDK used</h3>
+<div class="paragraph">
+<p>Open the "File" tab.</p>
+</div>
+<div class="paragraph">
+<p>Select "Project structure"</p>
+</div>
+<div class="paragraph">
+<p>SDK option will appear as no SDK</p>
+</div>
+<div class="paragraph">
+<p>Select the SDK version 11</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to test it out, you can run it with this configuration, and it should work in localhost:8080/etf-webapp
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debugging_using_intellij">Debugging using IntelliJ</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_a_project_for_the_testdrivers">Creating a project for the testdrivers</h3>
+<div class="paragraph">
+<p>Clone the testdrivers from the following links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/etf-validator/etf-bsxtd.git">etf-bsxtd</a> ETF test driver for running BaseX XQuery based test projects</p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-tetd.git">etf-tetd</a> ETF test driver for executing Test Suites on a remote OGC TEAM Engine instance</p>
+</li>
+<li>
+<p><a href="https://github.com/etf-validator/etf-suitd.git">etf-suitd</a> ETF test driver for running SoapUI based test projects</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Open IntelliJ.</p>
+</div>
+<div class="paragraph">
+<p>Open the "File" tab.</p>
+</div>
+<div class="paragraph">
+<p>Select "New"</p>
+</div>
+<div class="paragraph">
+<p>Open project from existing sources</p>
+</div>
+<div class="paragraph">
+<p>Select the testdriver project (Select only one of them)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_run_configuration_file">Creating a run configuration file</h3>
+<div class="paragraph">
+<p>Open the dropdown menu, in which appear by default "Current File".</p>
+</div>
+<div class="paragraph">
+<p>Select "Edit Configurations&#8230;&#8203;".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/current-file-IJ.png" alt="current file IJ"></span></p>
+</div>
+<div class="paragraph">
+<p>A new window will appear.</p>
+</div>
+<div class="paragraph">
+<p>Click in "Add new".</p>
+</div>
+<div class="paragraph">
+<p>Select "Remote JVM Debug".</p>
+</div>
+<div class="paragraph">
+<p>Fill it in like in the following example:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/debug-configuration-file-IJ.png" alt="debug configuration file IJ"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In Command line arguments for remote JVM, you have to put the same as in vm options of the webapp
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modifying_the_jdk_used_2">Modifying the JDK used</h3>
+<div class="paragraph">
+<p>Open the "File" tab.</p>
+</div>
+<div class="paragraph">
+<p>Select "Project structure"</p>
+</div>
+<div class="paragraph">
+<p>SDK option will appear as no SDK</p>
+</div>
+<div class="paragraph">
+<p>Select the SDK version 11</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can use 1.8 or 11, it depends on the modules you want to debug. In IntelliJ, it is also possible to use different SDKs in different modules, in case you need it.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_the_ets_repository_and_testdrivers">Adding the ETS repository and testdrivers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Download the ETS repository from the <a href="https://github.com/INSPIRE-MIF/helpdesk-validator/releases">release</a></p>
+</div>
+<div class="paragraph">
+<p>Extract it.</p>
+</div>
+<div class="paragraph">
+<p>Run the etf-webapp once.</p>
+</div>
+<div class="paragraph">
+<p>It will create a folder called ".etf".</p>
+</div>
+<div class="paragraph">
+<p>Copy the extracted files in the "projects" folder, inside ".etf".</p>
+</div>
+<div class="paragraph">
+<p>Put the testdrivers in td/lib/</p>
+</div>
+<div class="paragraph">
+<p>Run again the etf-webapp.</p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll find all the ETS inside now.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_use">How to use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open both projects in different windows</p>
+</div>
+<div class="paragraph">
+<p>Run the etf-webapp</p>
+</div>
+<div class="paragraph">
+<p>Debug in the testdrivers project.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to debug another test driver or anything contained, you just need to add a new module with the contents of the project you want to debug in the project with the testdrivers.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="paragraph small">
+<p><a href="https://www.interactive-instruments.de/en/about/impressum/">Legal Notice</a> | <a href="https://www.interactive-instruments.de/en/about/datenschutzerklarung/">Privacy Notice</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-03-01 11:29:00 +0100
+</div>
+</div>
+</body>
+</html>
