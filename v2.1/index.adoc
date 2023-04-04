@@ -42,6 +42,7 @@ include::General/About.adoc[]
 * link:Developer_manuals/WEB-API.html[Workflow automation using the Web API]
 * link:Developer_manuals/Developing_Executable_Test_Suites.html[Developing Executable Test Suites]
 * link:Developer_manuals/Building.html[Building ETF]
+* link:Developer_manuals/Debugging.html[Debugging ETF]
 
 include::General/Copyright.adoc[]
 
