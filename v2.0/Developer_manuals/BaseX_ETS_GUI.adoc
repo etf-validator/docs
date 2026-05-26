@@ -60,6 +60,13 @@ declare variable $etsFile external := $projDir || file:dir-separator() || "ets-t
 
 Executing the XQuery should now execute the test suite.
 
+There are additional steps, in case the testproject uses a prepare-chunk document (see link:#the-prepare-chunk-document[below] for more information):
+
+* Set the external variable `$dbName` to the name of your database in BaseX.
+* Open and run the prepare-chunk document.
+
+Executing the XQuery document should now execute the test suite.
+
 ==== Best practices
 
 During the development of a test suite, it may be handy to compile a
